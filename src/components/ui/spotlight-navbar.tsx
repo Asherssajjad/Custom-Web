@@ -1,13 +1,10 @@
-"use client";
+'use client';
 
-import React, { useEffect, useRef, useState } from "react";
-import { animate } from "framer-motion";
-import { cn } from "@/lib/utils";
+import React, { useEffect, useRef, useState } from 'react';
+import { animate } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
-export interface NavItem {
-    label: string;
-    href: string;
-}
+export interface NavItem { label: string; href: string; }
 
 export interface SpotlightNavbarProps {
     items?: NavItem[];
@@ -18,11 +15,11 @@ export interface SpotlightNavbarProps {
 
 export function SpotlightNavbar({
     items = [
-        { label: "Home", href: "/" },
-        { label: "Services", href: "/services" },
-        { label: "Case Studies", href: "/case-studies" },
-        { label: "About", href: "/about" },
-        { label: "Blog", href: "/blog" },
+        { label: 'Home', href: '/' },
+        { label: 'Services', href: '/services' },
+        { label: 'Case Studies', href: '/case-studies' },
+        { label: 'About', href: '/about' },
+        { label: 'Blog', href: '/blog' },
     ],
     className,
     onItemClick,
@@ -31,7 +28,6 @@ export function SpotlightNavbar({
     const navRef = useRef<HTMLDivElement>(null);
     const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
     const [hoverX, setHoverX] = useState<number | null>(null);
-
     const spotlightX = useRef(0);
     const ambienceX = useRef(0);
 
@@ -44,7 +40,7 @@ export function SpotlightNavbar({
             const x = e.clientX - rect.left;
             setHoverX(x);
             spotlightX.current = x;
-            nav.style.setProperty("--spotlight-x", `${x}px`);
+            nav.style.setProperty('--spotlight-x', `${x}px`);
         };
 
         const handleMouseLeave = () => {
@@ -54,46 +50,29 @@ export function SpotlightNavbar({
                 const navRect = nav.getBoundingClientRect();
                 const itemRect = activeItem.getBoundingClientRect();
                 const targetX = itemRect.left - navRect.left + itemRect.width / 2;
-
                 animate(spotlightX.current, targetX, {
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 20,
-                    onUpdate: (v) => {
-                        spotlightX.current = v;
-                        nav.style.setProperty("--spotlight-x", `${v}px`);
-                    },
+                    type: 'spring', stiffness: 200, damping: 20,
+                    onUpdate: (v) => { spotlightX.current = v; nav.style.setProperty('--spotlight-x', `${v}px`); },
                 });
             }
         };
 
-        nav.addEventListener("mousemove", handleMouseMove);
-        nav.addEventListener("mouseleave", handleMouseLeave);
-
-        return () => {
-            nav.removeEventListener("mousemove", handleMouseMove);
-            nav.removeEventListener("mouseleave", handleMouseLeave);
-        };
+        nav.addEventListener('mousemove', handleMouseMove);
+        nav.addEventListener('mouseleave', handleMouseLeave);
+        return () => { nav.removeEventListener('mousemove', handleMouseMove); nav.removeEventListener('mouseleave', handleMouseLeave); };
     }, [activeIndex]);
 
     useEffect(() => {
         if (!navRef.current) return;
         const nav = navRef.current;
         const activeItem = nav.querySelector(`[data-index="${activeIndex}"]`);
-
         if (activeItem) {
             const navRect = nav.getBoundingClientRect();
             const itemRect = activeItem.getBoundingClientRect();
             const targetX = itemRect.left - navRect.left + itemRect.width / 2;
-
             animate(ambienceX.current, targetX, {
-                type: "spring",
-                stiffness: 200,
-                damping: 20,
-                onUpdate: (v) => {
-                    ambienceX.current = v;
-                    nav.style.setProperty("--ambience-x", `${v}px`);
-                },
+                type: 'spring', stiffness: 200, damping: 20,
+                onUpdate: (v) => { ambienceX.current = v; nav.style.setProperty('--ambience-x', `${v}px`); },
             });
         }
     }, [activeIndex]);
@@ -104,32 +83,22 @@ export function SpotlightNavbar({
     };
 
     return (
-        <div className={cn("relative flex justify-center", className)}>
+        <div className={cn('relative flex justify-center', className)}>
             <nav
                 ref={navRef}
-                className={cn(
-                    "spotlight-nav spotlight-nav-bg dark glass-border spotlight-nav-shadow",
-                    "relative h-11 rounded-full transition-all duration-300 overflow-hidden"
-                )}
+                className={cn('spotlight-nav spotlight-nav-bg glass-border spotlight-nav-shadow', 'relative h-10 rounded-full transition-all duration-300 overflow-hidden')}
             >
-                {/* Nav Links */}
-                <ul className="relative flex items-center h-full px-2 gap-0 z-[10]">
+                <ul className="relative flex items-center h-full px-2 z-[10]">
                     {items.map((item, idx) => (
-                        <li key={idx} className="relative h-full flex items-center justify-center">
+                        <li key={idx} className="relative h-full flex items-center">
                             <a
                                 href={item.href}
                                 data-index={idx}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handleItemClick(item, idx);
-                                    window.location.href = item.href;
-                                }}
+                                onClick={(e) => { e.preventDefault(); handleItemClick(item, idx); window.location.href = item.href; }}
                                 className={cn(
-                                    "px-4 py-2 text-sm font-bold tracking-wide transition-colors duration-200 rounded-full uppercase font-heading",
-                                    "focus-visible:outline-none focus-visible:ring-2",
-                                    activeIndex === idx
-                                        ? "text-white"
-                                        : "text-white/40 hover:text-white/80"
+                                    'px-4 py-1.5 text-xs font-bold tracking-[0.12em] uppercase transition-colors duration-200 rounded-full font-body',
+                                    'focus-visible:outline-none',
+                                    activeIndex === idx ? 'text-white' : 'text-white/35 hover:text-white/70'
                                 )}
                             >
                                 {item.label}
@@ -138,25 +107,20 @@ export function SpotlightNavbar({
                     ))}
                 </ul>
 
-                {/* 1. Moving Spotlight (Follows Mouse) — Indigo */}
-                <div
-                    className="pointer-events-none absolute bottom-0 left-0 w-full h-full z-[1] transition-opacity duration-300"
+                {/* Mouse spotlight */}
+                <div className="pointer-events-none absolute inset-0 z-[1] transition-opacity duration-300"
                     style={{
                         opacity: hoverX !== null ? 1 : 0,
-                        background: `radial-gradient(120px circle at var(--spotlight-x) 100%, rgba(99,102,241,0.15) 0%, transparent 50%)`,
+                        background: `radial-gradient(100px circle at var(--spotlight-x) 100%, rgba(99,102,241,0.12) 0%, transparent 50%)`,
                     }}
                 />
 
-                {/* 2. Active Ambience Bottom Line — Indigo */}
-                <div
-                    className="pointer-events-none absolute bottom-0 left-0 w-full h-[2px] z-[2]"
-                    style={{
-                        background: `radial-gradient(60px circle at var(--ambience-x) 0%, rgba(99,102,241,1) 0%, transparent 100%)`,
-                    }}
+                {/* Active ambience line */}
+                <div className="pointer-events-none absolute bottom-0 left-0 w-full h-[2px] z-[2]"
+                    style={{ background: `radial-gradient(50px circle at var(--ambience-x) 0%, rgba(99,102,241,1) 0%, transparent 100%)` }}
                 />
 
-                {/* 3. Bottom Border Track */}
-                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/10 z-0" />
+                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-white/8 z-0" />
             </nav>
         </div>
     );

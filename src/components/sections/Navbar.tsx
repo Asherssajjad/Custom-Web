@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Zap, ChevronRight } from 'lucide-react';
 import { SpotlightNavbar } from '@/components/ui/spotlight-navbar';
 
-const navItems = [
+const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'Services', href: '/services' },
     { label: 'Case Studies', href: '/case-studies' },
@@ -14,72 +14,60 @@ const navItems = [
     { label: 'Blog', href: '/blog' },
 ];
 
-const mobileLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Case Studies', href: '/case-studies' },
-    { name: 'About', href: '/about' },
-    { name: 'Blog', href: '/blog' },
-];
-
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
+        const handleScroll = () => setScrolled(window.scrollY > 24);
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'py-3' : 'py-6'}`}>
-                <div className="container mx-auto px-6">
-                    <div className="flex items-center justify-between gap-8">
+            <header
+                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'py-2 backdrop-blur-xl bg-black/60' : 'py-5'
+                    }`}
+            >
+                <div className="container mx-auto px-6 lg:px-10">
+                    <div className="flex items-center justify-between gap-6">
 
                         {/* Logo */}
-                        <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
-                            <div className="relative w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/50 transition-all shadow-lg">
-                                <Zap className="text-white w-5 h-5 group-hover:text-primary transition-colors" />
+                        <Link href="/" className="flex items-center gap-2.5 group flex-shrink-0">
+                            <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/40 transition-all">
+                                <Zap className="w-4 h-4 text-white group-hover:text-primary transition-colors" />
                             </div>
-                            <span className="text-xl font-[900] italic tracking-tighter uppercase text-white font-heading">
+                            <span className="font-display text-2xl font-[900] italic uppercase tracking-tight text-white">
                                 Lumina
                             </span>
                         </Link>
 
-                        {/* CENTER: SpotlightNavbar pill — desktop only */}
-                        <div className="hidden lg:block flex-1">
-                            <SpotlightNavbar
-                                items={navItems}
-                                defaultActiveIndex={0}
-                            />
+                        {/* Center pill nav – desktop */}
+                        <div className="hidden lg:flex flex-1 justify-center">
+                            <SpotlightNavbar items={navLinks} defaultActiveIndex={0} />
                         </div>
 
-                        {/* Right CTA — desktop */}
+                        {/* CTA – desktop */}
                         <div className="hidden lg:block flex-shrink-0">
-                            <Link
-                                href="/contact"
-                                className="px-7 py-3 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5 font-heading"
-                            >
+                            <Link href="/contact" className="btn-primary text-sm px-7 py-3">
                                 Start Project
                             </Link>
                         </div>
 
-                        {/* Mobile menu toggle */}
+                        {/* Mobile toggle */}
                         <button
-                            className="lg:hidden w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-all"
+                            className="lg:hidden w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-all"
                             onClick={() => setIsOpen(!isOpen)}
                             aria-label="Toggle menu"
                         >
-                            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                            {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
                         </button>
-
                     </div>
                 </div>
             </header>
 
-            {/* Mobile Menu */}
+            {/* Mobile menu */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -87,31 +75,31 @@ export default function Navbar() {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: '100%' }}
                         transition={{ type: 'spring', damping: 28, stiffness: 220 }}
-                        className="fixed inset-0 z-[200] bg-black/98 backdrop-blur-2xl lg:hidden flex flex-col justify-center p-10 gap-6"
+                        className="fixed inset-0 z-[200] bg-black/98 backdrop-blur-2xl lg:hidden flex flex-col justify-center p-10 gap-5"
                     >
                         <button
-                            className="absolute top-8 right-8 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center"
+                            className="absolute top-6 right-6 w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center"
                             onClick={() => setIsOpen(false)}
                         >
-                            <X className="w-5 h-5" />
+                            <X className="w-4 h-4" />
                         </button>
 
-                        {mobileLinks.map((link) => (
+                        {navLinks.map((link) => (
                             <Link
-                                key={link.name}
+                                key={link.label}
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
-                                className="text-5xl font-[900] uppercase italic tracking-tighter flex items-center justify-between group hover:text-primary transition-colors font-heading"
+                                className="font-display text-5xl font-[900] uppercase italic tracking-tight flex items-center justify-between group hover:text-primary transition-colors"
                             >
-                                <span>{link.name}</span>
-                                <ChevronRight className="w-8 h-8 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
+                                <span>{link.label}</span>
+                                <ChevronRight className="w-7 h-7 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
                             </Link>
                         ))}
 
                         <Link
                             href="/contact"
                             onClick={() => setIsOpen(false)}
-                            className="mt-8 py-7 rounded-[40px] bg-white text-black text-center font-black text-3xl uppercase tracking-tighter font-heading"
+                            className="mt-6 btn-indigo text-center justify-center text-xl"
                         >
                             Let's Talk
                         </Link>
