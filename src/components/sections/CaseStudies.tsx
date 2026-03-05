@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight, CheckCircle2, Zap } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, CheckCircle2, Zap } from 'lucide-react';
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import Link from 'next/link';
 
 const cases = [
   {
@@ -105,4 +106,3 @@ export default function CaseStudies({ isPreview = false }: { isPreview?: boolean
   );
 }
 
-import Link from 'next/link';
