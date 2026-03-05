@@ -2,11 +2,18 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
-import { Menu, X, Rocket, ChevronRight, Zap } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Zap, ChevronRight } from 'lucide-react';
+import { SpotlightNavbar } from '@/components/ui/spotlight-navbar';
 
-const navLinks = [
+const navItems = [
+    { label: 'Services', href: '/services' },
+    { label: 'Case Studies', href: '/case-studies' },
+    { label: 'About', href: '/about' },
+    { label: 'Blog', href: '/blog' },
+];
+
+const mobileLinks = [
     { name: 'Services', href: '/services' },
     { name: 'Case Studies', href: '/case-studies' },
     { name: 'About', href: '/about' },
@@ -15,95 +22,94 @@ const navLinks = [
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const { scrollY } = useScroll();
+    const [scrolled, setScrolled] = useState(false);
 
-    const headerOpacity = useTransform(scrollY, [0, 100], [0, 1]);
-    const headerBlur = useTransform(scrollY, [0, 100], [0, 24]);
-    const headerY = useTransform(scrollY, [0, 100], [0, 10]);
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <>
-            <motion.nav
-                className="fixed top-0 left-0 right-0 z-[100] px-6 py-6 transition-all duration-300 pointer-events-none"
-            >
-                <div className="container mx-auto flex items-center justify-between">
+            <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'py-3' : 'py-6'}`}>
+                <div className="container mx-auto px-6">
+                    <div className="flex items-center justify-between gap-8">
 
-                    <Link href="/" className="flex items-center gap-3 group pointer-events-auto">
-                        <div className="relative w-12 h-12 shadow-2xl">
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-                                className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
-                            />
-                            <div className="relative w-full h-full bg-white/5 backdrop-blur-3xl rounded-2xl border border-white/10 flex items-center justify-center overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-primary/10" />
-                                <Zap className="text-white w-6 h-6 group-hover:scale-110 transition-transform group-hover:text-primary" />
+                        {/* Logo */}
+                        <Link href="/" className="flex items-center gap-3 group flex-shrink-0">
+                            <div className="relative w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/50 transition-all shadow-lg">
+                                <Zap className="text-white w-5 h-5 group-hover:text-primary transition-colors" />
                             </div>
-                        </div>
-                        <span className="text-2xl font-[900] tracking-tighter uppercase italic text-white font-heading">Lumina</span>
-                    </Link>
-
-                    {/* Desktop Nav - High End Pill */}
-                    <div className="hidden lg:flex items-center gap-2 p-1.5 bg-white/[0.03] backdrop-blur-3xl rounded-full border border-white/5 shadow-2xl pointer-events-auto">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="px-6 py-3 text-[13px] font-bold tracking-[0.05em] uppercase text-white/50 hover:text-white hover:bg-white/5 rounded-full transition-all relative font-heading"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                        <div className="w-[1px] h-4 bg-white/10 mx-2" />
-                        <Link
-                            href="/contact"
-                            className="px-8 py-3 rounded-full bg-white text-black font-black text-[13px] uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5"
-                        >
-                            Start Project
+                            <span className="text-xl font-[900] italic tracking-tighter uppercase text-white font-heading">
+                                Lumina
+                            </span>
                         </Link>
+
+                        {/* CENTER: SpotlightNavbar pill — desktop only */}
+                        <div className="hidden lg:block flex-1">
+                            <SpotlightNavbar
+                                items={navItems}
+                                defaultActiveIndex={0}
+                            />
+                        </div>
+
+                        {/* Right CTA — desktop */}
+                        <div className="hidden lg:block flex-shrink-0">
+                            <Link
+                                href="/contact"
+                                className="px-7 py-3 rounded-full bg-white text-black font-black text-sm uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/5 font-heading"
+                            >
+                                Start Project
+                            </Link>
+                        </div>
+
+                        {/* Mobile menu toggle */}
+                        <button
+                            className="lg:hidden w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition-all"
+                            onClick={() => setIsOpen(!isOpen)}
+                            aria-label="Toggle menu"
+                        >
+                            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                        </button>
+
                     </div>
-
-                    <button
-                        className="lg:hidden w-12 h-12 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center text-white pointer-events-auto"
-                        onClick={() => setIsOpen(!isOpen)}
-                    >
-                        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-                    </button>
                 </div>
-            </motion.nav>
+            </header>
 
+            {/* Mobile Menu */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, x: '100%' }}
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: '100%' }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed inset-0 z-[200] bg-black/98 backdrop-blur-2xl lg:hidden p-8 flex flex-col justify-center gap-8"
+                        transition={{ type: 'spring', damping: 28, stiffness: 220 }}
+                        className="fixed inset-0 z-[200] bg-black/98 backdrop-blur-2xl lg:hidden flex flex-col justify-center p-10 gap-6"
                     >
                         <button
-                            className="absolute top-10 right-10 w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center"
+                            className="absolute top-8 right-8 w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center"
                             onClick={() => setIsOpen(false)}
                         >
-                            <X className="w-8 h-8" />
+                            <X className="w-5 h-5" />
                         </button>
 
-                        {navLinks.map((link, i) => (
+                        {mobileLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
-                                className="text-5xl font-black uppercase italic tracking-tighter flex items-center justify-between group group-hover:text-primary transition-colors font-heading"
+                                className="text-5xl font-[900] uppercase italic tracking-tighter flex items-center justify-between group hover:text-primary transition-colors font-heading"
                             >
                                 <span>{link.name}</span>
-                                <ChevronRight className="w-10 h-10 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-4 transition-all" />
+                                <ChevronRight className="w-8 h-8 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
                             </Link>
                         ))}
 
                         <Link
                             href="/contact"
                             onClick={() => setIsOpen(false)}
-                            className="mt-10 py-8 rounded-[40px] bg-white text-black text-center font-black text-4xl uppercase tracking-tighter"
+                            className="mt-8 py-7 rounded-[40px] bg-white text-black text-center font-black text-3xl uppercase tracking-tighter font-heading"
                         >
                             Let's Talk
                         </Link>
