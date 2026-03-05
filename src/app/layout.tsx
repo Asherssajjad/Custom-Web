@@ -1,17 +1,22 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 
-const jakarta = Plus_Jakarta_Sans({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-outfit",
+  weight: ["400", "500", "600", "700", "800", "900"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
   title: "LUMINA | Premium Digital Agency | Shopify, WordPress & SEO",
   description: "Lumina is a world-class digital agency specializing in high-performance Shopify stores, custom WordPress websites, and aggressive SEO strategies.",
-  keywords: ["Shopify Development", "WordPress Agency", "SEO Services", "Digital Agency", "Web Design"],
 };
 
 export default function RootLayout({
@@ -21,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jakarta.variable} font-sans antialiased`}>
+      <body className={`${outfit.variable} ${inter.variable} font-inter antialiased`}>
         <SmoothScrollProvider>
           {children}
         </SmoothScrollProvider>
