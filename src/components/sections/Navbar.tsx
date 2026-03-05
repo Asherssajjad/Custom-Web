@@ -7,6 +7,7 @@ import { Menu, X, Zap, ChevronRight } from 'lucide-react';
 import { SpotlightNavbar } from '@/components/ui/spotlight-navbar';
 
 const navItems = [
+    { label: 'Home', href: '/' },
     { label: 'Services', href: '/services' },
     { label: 'Case Studies', href: '/case-studies' },
     { label: 'About', href: '/about' },
@@ -14,6 +15,7 @@ const navItems = [
 ];
 
 const mobileLinks = [
+    { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
     { name: 'Case Studies', href: '/case-studies' },
     { name: 'About', href: '/about' },
