@@ -26,10 +26,10 @@
   --color-border: var(--border);
   --color-card: var(--card);
 
-  /* font-display  → Barlow Condensed  (hero, big headings) */
-  --font-display: var(--font-display), "Barlow Condensed", system-ui, sans-serif;
-  /* font-body     → Figtree            (body, sub-headings, UI) */
-  --font-body: var(--font-body), "Figtree", system-ui, sans-serif;
+  /* font-display  → Poppins */
+  --font-display: var(--font-poppins), system-ui, sans-serif;
+  /* font-body     → Poppins */
+  --font-body: var(--font-poppins), system-ui, sans-serif;
 }
 
 /* ═══════════════════════════════════════════
@@ -43,71 +43,52 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 15px;
+  /* Slightly smaller base font size */
 }
 
 body {
   background: #000;
   color: #fff;
-  font-family: var(--font-body), "Figtree", sans-serif;
+  font-family: var(--font-poppins), sans-serif;
   font-weight: 400;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* All major headings → Barlow Condensed */
 h1,
 h2,
 h3 {
-  font-family: var(--font-display), "Barlow Condensed", sans-serif;
-  font-weight: 900;
-  letter-spacing: -0.02em;
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 h4,
 h5,
 h6 {
-  font-family: var(--font-body), "Figtree", sans-serif;
-  font-weight: 700;
+  font-family: var(--font-poppins), sans-serif;
+  font-weight: 600;
 }
 
 /* ═══════════════════════════════════════════
    UTILITY CLASSES
 ═══════════════════════════════════════════ */
 
-/* Barlow Condensed Black Italic – exactly like the hero screenshot */
 .font-display {
-  font-family: var(--font-display), "Barlow Condensed", sans-serif;
-  font-weight: 900;
+  font-family: var(--font-poppins), sans-serif;
 }
 
-/* Figtree – section headings & UI */
 .font-body {
-  font-family: var(--font-body), "Figtree", sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 }
 
-/* Primary indigo gradient text */
 .gradient-text {
   background: linear-gradient(90deg, #818cf8, #a78bfa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* White → Primary gradient */
-.gradient-text-wp {
-  background: linear-gradient(90deg, #ffffff 40%, #6366f1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Glass effect */
-.glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .glass-card {
@@ -116,120 +97,91 @@ h6 {
   transition: all 0.35s ease;
 }
 
-.glass-card:hover {
-  border-color: rgba(99, 102, 241, 0.3);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-/* Indigo glow pill badge */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 18px;
+  gap: 6px;
+  padding: 5px 14px;
   border-radius: 999px;
   border: 1px solid rgba(99, 102, 241, 0.25);
   background: rgba(99, 102, 241, 0.08);
-  font-family: var(--font-body), "Figtree", sans-serif;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.15em;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--primary-light);
 }
 
-/* Section label (dot + text like the screenshot) */
 .section-label {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 20px;
+  gap: 7px;
+  padding: 5px 16px;
   border-radius: 999px;
   background: rgba(15, 15, 20, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  font-family: var(--font-body), "Figtree", sans-serif;
-  font-weight: 600;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.7);
 }
 
 .section-label .dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--primary);
 }
 
-/* White filled button */
 .btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 32px;
+  gap: 7px;
+  padding: 12px 28px;
   border-radius: 999px;
   background: #fff;
   color: #000;
-  font-family: var(--font-body), "Figtree", sans-serif;
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 0.05em;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   text-decoration: none;
 }
 
-.btn-primary:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
-}
-
-/* Ghost button */
 .btn-ghost {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 32px;
+  gap: 7px;
+  padding: 12px 28px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   background: transparent;
   color: #fff;
-  font-family: var(--font-body), "Figtree", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.05em;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
 }
 
-.btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-/* Indigo glow button (like "Book a 10-min call" in screenshot) */
 .btn-indigo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 14px 36px;
+  gap: 7px;
+  padding: 12px 32px;
   border-radius: 999px;
   background: linear-gradient(135deg, #6366f1, #7c3aed);
   color: #fff;
-  font-family: var(--font-body), "Figtree", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.03em;
   cursor: pointer;
   transition: all 0.25s ease;
   text-decoration: none;
-  box-shadow: 0 0 30px rgba(99, 102, 241, 0.35);
-}
-
-.btn-indigo:hover {
-  transform: scale(1.04);
-  box-shadow: 0 0 50px rgba(99, 102, 241, 0.55);
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.3);
 }
 
 /* ═══════════════════════════════════════════
@@ -254,7 +206,7 @@ h6 {
    SCROLLBAR
 ═══════════════════════════════════════════ */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -264,10 +216,6 @@ h6 {
 ::-webkit-scrollbar-thumb {
   background: #1a1a2e;
   border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--primary);
 }
 
 /* ═══════════════════════════════════════════
@@ -280,12 +228,4 @@ html.lenis body {
 
 .lenis.lenis-smooth {
   scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
 }

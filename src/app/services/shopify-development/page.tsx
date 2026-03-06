@@ -2,89 +2,102 @@
 
 import Navbar from '@/components/sections/Navbar';
 import Footer from '@/components/sections/Footer';
-import Contact from '@/components/sections/Contact';
-import { motion } from 'framer-motion';
-import { ShoppingBag, ArrowRight, Zap, CheckCircle2 } from 'lucide-react';
+import CTA from '@/components/sections/CTA';
+import { ShoppingBag, CheckCircle, ArrowRight, Zap, Target, Layers } from 'lucide-react';
 import Link from 'next/link';
 
-export default function ShopifyDevelopment() {
+export default function ShopifyService() {
+    const features = [
+        { title: 'Custom Theme Dev', desc: 'Bespoke designs optimized for performance.' },
+        { title: 'Headless Shopify', desc: 'Next.js + Shopify for ultra-fast load times.' },
+        { title: 'App Integration', desc: 'Custom apps for unique enterprise logic.' },
+        { title: 'Conversion Audit', desc: 'Data-driven UI/UX scaling strategies.' },
+        { title: 'Platform Migration', desc: 'Seamlessly move from any legacy system.' },
+        { title: 'DevOps & CI/CD', desc: 'Staging, testing, and stable production builds.' }
+    ];
+
     return (
-        <main className="bg-black text-white min-h-screen">
+        <main className="min-h-screen bg-black text-white selection:bg-primary/20">
             <Navbar />
 
-            {/* ── HERO ────────────────────────── */}
-            <section className="pt-44 pb-24 relative overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-primary/5 blur-[120px] pointer-events-none" />
-                <div className="container mx-auto px-6 lg:px-12 text-center space-y-8">
-                    <div className="section-label mx-auto">
-                        <span className="dot" />
-                        Specialised Service
-                    </div>
-                    <h1 className="font-display text-[15vw] md:text-[8vw] lg:text-[10vw] font-[900] uppercase italic leading-[0.8] tracking-tighter">
-                        Shopify<br />
-                        <span className="gradient-text">Excellence</span>
-                    </h1>
-                    <p className="font-body text-white/50 text-xl md:text-2xl max-w-2xl mx-auto font-medium leading-relaxed">
-                        High-conversion, performance-engineered Shopify ecosystems for the next generation of commerce.
-                    </p>
-                    <div className="pt-4">
-                        <Link href="/contact" className="btn-primary">
-                            Launch Your Store
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            {/* ── CAPABILITIES ────────────────── */}
-            <section className="py-24 border-t border-white/5">
-                <div className="container mx-auto px-6 lg:px-12">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                        <div className="space-y-12">
-                            <div className="space-y-6">
-                                <h2 className="font-display text-5xl md:text-7xl font-[900] uppercase italic leading-[0.9] tracking-tighter">
-                                    Beyond The<br />
-                                    <span className="text-white/30 italic">Standard Theme</span>
-                                </h2>
-                                <p className="font-body text-white/50 text-xl font-medium leading-relaxed">
-                                    We don't just build stores; we architect revenue-generating systems using Headless Hydrogen or highly optimized Liquid storefronts.
-                                </p>
+            {/* Hero */}
+            <section className="pt-48 pb-20 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-[80vw] h-[80vh] bg-primary/5 blur-[200px] -z-10" />
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col lg:flex-row items-center gap-24">
+                        <div className="flex-1 space-y-12">
+                            <div className="inline-flex items-center gap-4 px-6 py-2 rounded-full border border-white/10 bg-white/[0.02] text-primary uppercase font-black text-xs tracking-[0.3em]">
+                                <ShoppingBag className="w-4 h-4" />
+                                <span>Shopify Excellence</span>
                             </div>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                {[
-                                    'Hydrogen & Oxygen',
-                                    'Liquid Performance',
-                                    'CRO Optimization',
-                                    'Custom ERP Sync',
-                                    'Advanced Subscriptions',
-                                    'B2B Wholesale',
-                                ].map((item) => (
-                                    <div key={item} className="flex items-center gap-4 group">
-                                        <CheckCircle2 className="w-5 h-5 text-primary group-hover:scale-125 transition-transform" />
-                                        <span className="font-body text-lg font-bold text-white/80">{item}</span>
-                                    </div>
-                                ))}
+                            <h1 className="text-7xl md:text-9xl font-[900] italic tracking-tighter uppercase leading-[0.85] font-heading">
+                                Scale Your <br /> <span className="gradient-text">E-commerce</span> <br /> Domain
+                            </h1>
+                            <p className="text-2xl text-muted-foreground max-w-2xl font-medium font-sans tracking-tight">
+                                Architecting high-performance Shopify engines that dominate global categories and drive millions in conversion value.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-10 pt-4">
+                                <Link href="/contact" className="px-12 py-6 rounded-full bg-white text-black font-black text-2xl uppercase tracking-tighter hover:scale-105 transition-all shadow-2xl">Inaugurate Brand</Link>
+                                <button className="flex items-center gap-4 font-black text-lg hover:text-primary transition-all group uppercase tracking-widest text-white/50">
+                                    Case Studies
+                                    <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform" />
+                                </button>
                             </div>
                         </div>
-
-                        <div className="relative">
-                            <div className="aspect-square rounded-[40px] bg-white/[0.02] border border-white/5 overflow-hidden group">
-                                <img
-                                    src="https://images.unsplash.com/photo-1556742049-13ef7312754c?q=80&w=1200&auto=format&fit=crop"
-                                    alt="Shopify Dev"
-                                    className="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
-                                />
-                            </div>
-                            <div className="absolute -bottom-8 -left-8 p-10 glass rounded-[32px] border-primary/20 space-y-4 max-w-[280px]">
-                                <p className="font-display text-5xl font-[900] italic text-primary">+340%</p>
-                                <p className="font-body text-[10px] font-black uppercase tracking-[0.2em] text-white/40">Average Revenue Lift Post-Optimization</p>
-                            </div>
+                        <div className="flex-1 relative aspect-square w-full max-w-lg rounded-[64px] overflow-hidden border border-white/5 group shadow-2xl">
+                            <img
+                                src="https://images.unsplash.com/photo-1556742049-13ef7312754c?q=80&w=800&auto=format&fit=crop"
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent" />
                         </div>
                     </div>
                 </div>
             </section>
 
-            <Contact />
+            {/* Features Grid */}
+            <section className="py-32 border-y border-white/5 bg-white/[0.01]">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-24 space-y-6">
+                        <div className="flex items-center justify-center gap-4 text-xs font-black tracking-[0.4em] uppercase text-primary">
+                            <Zap className="w-4 h-4 fill-primary/30" />
+                            <span>Engineering Protocols</span>
+                        </div>
+                        <h2 className="text-5xl md:text-8xl font-[900] uppercase italic tracking-tighter font-heading leading-tight">What We <span className="gradient-text italic">Architect</span></h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {features.map((feature, i) => (
+                            <div key={i} className="p-12 rounded-[40px] border border-white/5 bg-white/[0.02] hover:border-primary/30 hover:bg-white/[0.04] transition-all group cursor-default">
+                                <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-10 border border-white/10 group-hover:bg-primary/20 transition-all">
+                                    <CheckCircle className="w-8 h-8 text-primary" />
+                                </div>
+                                <h3 className="text-2xl font-black mb-6 uppercase italic tracking-tighter font-heading">{feature.title}</h3>
+                                <p className="text-muted-foreground text-lg font-medium font-sans leading-relaxed">{feature.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Impact Stats */}
+            <section className="py-40">
+                <div className="container mx-auto px-6 text-center">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-24">
+                        {[
+                            { label: 'Conversion Lift', val: '240%', icon: Zap },
+                            { label: 'Revenue Growth', val: '45%+', icon: Target },
+                            { label: 'Mobile Sales', val: '2x', icon: Layers },
+                        ].map((stat, i) => (
+                            <div key={i} className="space-y-6">
+                                <h4 className="text-8xl font-black tracking-[-0.05em] text-white italic uppercase font-heading leading-none">{stat.val}</h4>
+                                <p className="text-xs font-black uppercase tracking-[0.4em] text-primary">{stat.label}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            <CTA />
             <Footer />
         </main>
     );

@@ -41,10 +41,10 @@ export default function Testimonials() {
                 <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] font-black uppercase tracking-[0.3em] font-heading">
                     Testimonials
                 </div>
-                <h2 className="text-5xl md:text-7xl font-[900] uppercase italic tracking-tighter font-heading leading-[0.9]">
+                <h2 className="text-4xl md:text-5xl font-[900] uppercase italic tracking-tighter font-heading leading-[0.9]">
                     What Our Clients <span className="text-primary">Say</span>
                 </h2>
-                <p className="text-white/40 max-w-lg mx-auto text-lg font-medium font-sans">
+                <p className="text-white/40 max-w-lg mx-auto text-base font-medium font-sans">
                     Real results, spoken by the people who matter most.
                 </p>
                 <div className="pt-2">

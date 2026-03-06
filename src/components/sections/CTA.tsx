@@ -23,12 +23,12 @@ export default function CTA() {
                 </div>
 
                 {/* Headline — Figtree (like screenshot, not condensed) */}
-                <h2 className="font-body text-4xl md:text-5xl lg:text-6xl font-[800] leading-[1.1] tracking-tight text-white">
+                <h2 className="font-body text-3xl md:text-5xl font-[800] leading-[1.1] tracking-tight text-white">
                     Delivering Results<br />
                     <span className="text-white">That Propel Your Success</span>
                 </h2>
 
-                <p className="font-body text-white/45 text-lg font-medium leading-relaxed max-w-md mx-auto">
+                <p className="font-body text-white/45 text-base font-medium leading-relaxed max-w-md mx-auto">
                     At the core of everything we do lies a commitment to delivering measurable outcomes that drive your success.
                 </p>
 

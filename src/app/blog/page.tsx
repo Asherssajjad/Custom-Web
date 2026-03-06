@@ -82,10 +82,10 @@ export default function BlogPage() {
                         <span className="dot" />
                         Insights & Resources
                     </div>
-                    <h1 className="font-display text-6xl md:text-8xl lg:text-[7vw] font-[900] uppercase italic leading-[0.9] tracking-tight">
+                    <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-[900] uppercase italic leading-[0.9] tracking-tight">
                         The <span className="gradient-text">Lumina</span> Blog
                     </h1>
-                    <p className="font-body text-white/50 text-lg max-w-xl mx-auto font-medium leading-relaxed">
+                    <p className="font-body text-white/50 text-base max-w-xl mx-auto font-medium leading-relaxed">
                         Expert strategies, industry insights, and proven playbooks from our team of digital specialists.
                     </p>
                 </div>
@@ -103,7 +103,7 @@ export default function BlogPage() {
                                 <div className={`inline-flex w-fit px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border font-body ${categoryColors[posts[0].category]}`}>
                                     {posts[0].category}
                                 </div>
-                                <h2 className="font-display text-4xl md:text-5xl font-[900] uppercase italic tracking-tight leading-[0.95] group-hover:text-primary transition-colors">
+                                <h2 className="font-display text-3xl md:text-4xl font-[900] uppercase italic tracking-tight leading-[0.95] group-hover:text-primary transition-colors">
                                     {posts[0].title}
                                 </h2>
                                 <p className="font-body text-white/45 text-base leading-relaxed">{posts[0].excerpt}</p>

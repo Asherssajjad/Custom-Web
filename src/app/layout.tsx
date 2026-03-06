@@ -1,21 +1,12 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed, Figtree } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 
-// Display / Hero font — bold condensed italic like the screenshot
-const barlowCondensed = Barlow_Condensed({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-});
-
-// Body / UI font — clean, rounded, modern
-const figtree = Figtree({
-  subsets: ["latin"],
-  variable: "--font-body",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -39,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${barlowCondensed.variable} ${figtree.variable} font-body antialiased bg-black text-white`}
+        className={`${poppins.variable} font-sans antialiased bg-black text-white`}
       >
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>

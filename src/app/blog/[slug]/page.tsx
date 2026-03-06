@@ -103,7 +103,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 </div>
 
                 {/* Headline */}
-                <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-[900] uppercase italic tracking-tight leading-[0.9] mb-8">
+                <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-[900] uppercase italic tracking-tight leading-[0.9] mb-8">
                     {post.title}
                 </h1>
 
@@ -111,7 +111,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 <div className="w-16 h-[2px] bg-primary mb-8" />
 
                 {/* Excerpt */}
-                <p className="font-body text-xl text-white/60 font-medium leading-relaxed mb-10 border-l-2 border-primary/40 pl-5">
+                <p className="font-body text-lg text-white/60 font-medium leading-relaxed mb-10 border-l-2 border-primary/40 pl-5">
                     {post.excerpt}
                 </p>
 
@@ -124,7 +124,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                                     {block.heading}
                                 </h2>
                             )}
-                            <p className="font-body text-white/55 text-lg leading-[1.8] font-normal">{block.body}</p>
+                            <p className="font-body text-white/55 text-base leading-[1.8] font-normal">{block.body}</p>
                         </div>
                     ))}
                 </div>

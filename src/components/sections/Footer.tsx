@@ -1,86 +1,81 @@
-'use client';
-
 import Link from 'next/link';
-import { Zap, Twitter, Linkedin, Instagram, ArrowUpRight } from 'lucide-react';
+import { Rocket, ArrowUpRight, Github, Twitter, Linkedin, Instagram, Zap } from 'lucide-react';
 
 export default function Footer() {
-    const currentYear = new Date().getFullYear();
-
     return (
-        <footer className="bg-black py-20 border-t border-white/5">
-            <div className="container mx-auto px-6 lg:px-12">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 border-b border-white/5 pb-20 mb-10">
+        <footer className="py-32 border-t border-white/5 bg-black text-white selection:bg-primary/20">
+            <div className="container mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-32">
 
-                    {/* Brand Col */}
-                    <div className="lg:col-span-5 space-y-8">
+                    <div className="space-y-12">
                         <Link href="/" className="flex items-center gap-3 group">
-                            <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 transition-all">
-                                <Zap className="w-5 h-5 text-white group-hover:text-primary transition-colors" />
+                            <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shadow-2xl group-hover:bg-primary transition-colors">
+                                <Zap className="text-white w-6 h-6 group-hover:scale-110 transition-transform" />
                             </div>
-                            <span className="font-display text-3xl font-[900] italic uppercase tracking-tighter text-white">
-                                Lumina
-                            </span>
+                            <span className="text-3xl font-[900] italic tracking-tighter uppercase font-heading">Lumina</span>
                         </Link>
-                        <p className="font-body text-white/40 text-lg font-medium leading-relaxed max-w-sm">
-                            Architecting high-performance digital brands since 2018. We bridge the gap between creative excellence and technical engineering.
+                        <p className="text-muted-foreground text-xl leading-relaxed font-medium font-sans">
+                            Engineering high-performance digital products for brands that demand absolute excellence.
                         </p>
-                        <div className="flex gap-4">
-                            {[Twitter, Linkedin, Instagram].map((Icon, i) => (
-                                <Link key={i} href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-primary hover:border-primary/30 transition-all">
-                                    <Icon className="w-5 h-5" />
+                        <div className="flex gap-6">
+                            {[Twitter, Linkedin, Instagram, Github].map((Icon, i) => (
+                                <Link key={i} href="#" className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-primary/10 hover:border-primary transition-all group">
+                                    <Icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                                 </Link>
                             ))}
                         </div>
                     </div>
 
-                    {/* Links Grid */}
-                    <div className="lg:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-12 lg:pl-12">
-                        <div className="space-y-6">
-                            <p className="font-body text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Solutions</p>
-                            <ul className="space-y-4">
-                                {['Shopify', 'WordPress', 'SEO Growth', 'Custom Dev'].map((l) => (
-                                    <li key={l}>
-                                        <Link href="#" className="font-body text-base font-bold text-white/50 hover:text-white transition-colors">
-                                            {l}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                    <div>
+                        <h4 className="text-xs font-black uppercase tracking-[0.4em] mb-12 text-white/40 font-heading">Services</h4>
+                        <ul className="space-y-8">
+                            {['Shopify Development', 'WordPress Solutions', 'SEO Strategies', 'Custom App Dev', 'CRM Integration'].map(item => (
+                                <li key={item}>
+                                    <Link href="#" className="text-muted-foreground hover:text-white transition-colors font-bold flex items-center justify-between group text-lg font-heading tracking-tighter uppercase">
+                                        {item}
+                                        <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 text-primary" />
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
-                        <div className="space-y-6">
-                            <p className="font-body text-[10px] font-black uppercase tracking-[0.3em] text-white/20">Agency</p>
-                            <ul className="space-y-4">
-                                {['Approach', 'Case Studies', 'Insights', 'Contact'].map((l) => (
-                                    <li key={l}>
-                                        <Link href="#" className="font-body text-base font-bold text-white/50 hover:text-white transition-colors">
-                                            {l}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                    <div>
+                        <h4 className="text-xs font-black uppercase tracking-[0.4em] mb-12 text-white/40 font-heading">Agency</h4>
+                        <ul className="space-y-8">
+                            {['About Us', 'Case Studies', 'Process', 'Our Team', 'Careers'].map(item => (
+                                <li key={item}>
+                                    <Link href="#" className="text-muted-foreground hover:text-white transition-colors font-bold block text-lg font-heading tracking-tighter uppercase">
+                                        {item}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
-                        <div className="space-y-6 col-span-2 md:col-span-1">
-                            <p className="font-body text-[10px] font-black uppercase tracking-[0.3em] text-white/20">New Projects</p>
-                            <div className="space-y-4">
-                                <p className="font-display text-2xl font-[900] italic uppercase text-white hover:text-primary transition-colors cursor-pointer">
-                                    Start Project
-                                </p>
-                                <p className="font-body text-sm text-white/30 font-medium">Inaugurate change today. Book your free 15-min strategy session.</p>
-                            </div>
+                    <div>
+                        <h4 className="text-xs font-black uppercase tracking-[0.4em] mb-12 text-white/40 font-heading">Intel</h4>
+                        <p className="text-muted-foreground mb-10 font-bold text-lg font-sans">Subscribe to our weekly performance insights.</p>
+                        <div className="relative">
+                            <input
+                                type="email"
+                                placeholder="Email Address"
+                                className="w-full bg-white/[0.03] border border-white/10 rounded-2xl px-6 py-5 focus:outline-none focus:border-primary text-white font-bold font-sans"
+                            />
+                            <button className="absolute right-2 top-2 bottom-2 w-14 rounded-xl bg-white text-black flex items-center justify-center hover:bg-primary hover:text-white transition-all shadow-xl">
+                                <ArrowUpRight className="w-6 h-6" />
+                            </button>
                         </div>
                     </div>
+
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                    <p className="font-body text-[11px] font-bold text-white/20 uppercase tracking-widest">
-                        © {currentYear} Lumina Digital Agency. All Rights Reserved.
-                    </p>
-                    <div className="flex gap-8">
-                        <Link href="#" className="font-body text-[11px] font-bold text-white/20 uppercase tracking-widest hover:text-white">Privacy Policy</Link>
-                        <Link href="#" className="font-body text-[11px] font-bold text-white/20 uppercase tracking-widest hover:text-white">Terms of Service</Link>
+                <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10 text-[10px] font-black tracking-[0.3em] uppercase text-white/30 font-heading">
+                    <p>© 2026 Lumina Digital Agency. Performance Architecture.</p>
+                    <div className="flex gap-12">
+                        <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
+                        <Link href="#" className="hover:text-white transition-colors">Terms</Link>
+                        <Link href="#" className="hover:text-white transition-colors">Security</Link>
                     </div>
                 </div>
             </div>

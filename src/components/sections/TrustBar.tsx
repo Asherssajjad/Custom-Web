@@ -1,56 +1,78 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const stats = [
+    { val: '150+', label: 'Projects Delivered', suffix: '' },
+    { val: '98', label: 'Client Retention', suffix: '%' },
+    { val: '3', label: 'Avg Revenue Growth', suffix: 'x' },
+    { val: '120', label: 'Enterprise Clients Served', suffix: '+' },
+];
 
 const logos = [
     'Shopify', 'WordPress', 'HubSpot', 'Salesforce', 'Figma', 'Vercel', 'Next.js', 'Stripe'
 ];
 
 export default function TrustBar() {
-    return (
-        <section className="bg-black py-24 md:py-32 overflow-hidden border-t border-white/5">
-            <div className="container mx-auto px-6 lg:px-12">
+    const container = useRef<HTMLDivElement>(null);
 
-                {/* Top Logo Strip — matches screenshot */}
-                <div className="mb-24 flex flex-col items-center">
-                    <p className="font-body text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-8">Technologies & Platforms We Master</p>
-                    <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
+    useGSAP(() => {
+        gsap.from('.trust-stat', {
+            scrollTrigger: { trigger: container.current, start: 'top 80%' },
+            y: 30,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: 'power3.out',
+        });
+
+        // Counter animation
+        document.querySelectorAll('.trust-counter').forEach((el) => {
+            const target = parseInt(el.getAttribute('data-target') || '0');
+            gsap.fromTo({ val: 0 }, { val: target }, {
+                scrollTrigger: { trigger: el, start: 'top 85%' },
+                duration: 2,
+                ease: 'power2.out',
+                onUpdate: function () {
+                    el.textContent = Math.round(this.targets()[0].val).toString();
+                }
+            });
+        });
+    }, { scope: container });
+
+    return (
+        <section ref={container} className="py-24 border-y border-white/5 bg-black relative overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(99,102,241,0.03),transparent)]" />
+
+            <div className="container mx-auto px-6 space-y-20">
+                {/* Animated Stats */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    {stats.map((s, i) => (
+                        <div key={i} className="trust-stat opacity-0 text-center space-y-2">
+                            <div className="text-5xl md:text-6xl font-[900] italic tracking-tighter font-heading text-white flex items-end justify-center gap-0">
+                                <span className="trust-counter" data-target={s.val.replace(/\D/g, '')}>{s.val.replace(/\D/g, '')}</span>
+                                <span className="text-primary">{s.suffix}</span>
+                            </div>
+                            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/30 font-heading">{s.label}</p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Logo / Tech strip */}
+                <div className="space-y-5">
+                    <p className="text-center text-[10px] font-black uppercase tracking-[0.4em] text-white/20 font-heading">Technologies & Platforms We Master</p>
+                    <div className="flex flex-wrap justify-center gap-x-10 gap-y-4">
                         {logos.map((logo) => (
-                            <span key={logo} className="font-display text-xl font-[900] uppercase italic tracking-widest text-white/10 hover:text-white/40 transition-colors cursor-default">
+                            <span key={logo} className="text-sm font-[900] uppercase italic tracking-widest text-white/15 hover:text-white/50 transition-colors font-heading cursor-default">
                                 {logo}
                             </span>
                         ))}
-                    </div>
-                </div>
-
-                {/* Core Expertise Section — matches screenshot exactly */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-[2px] bg-primary" />
-                            <span className="font-body text-[10px] font-black uppercase tracking-[0.3em] text-primary">Our Domain</span>
-                        </div>
-
-                        <h2 className="font-display text-[12vw] md:text-[8vw] lg:text-[7vw] font-[900] uppercase italic leading-[0.8] tracking-tighter text-white">
-                            Core<br />
-                            <span className="gradient-text">Expertise</span>
-                        </h2>
-                    </div>
-
-                    <div className="lg:pt-20">
-                        <p className="font-body text-white text-2xl md:text-3xl font-bold leading-tight max-w-xl">
-                            We deliver high-impact digital solutions that accelerate scalability for modern enterprises.
-                        </p>
-                        <div className="mt-12 grid grid-cols-2 gap-8">
-                            <div className="space-y-2">
-                                <p className="font-display text-4xl font-[900] italic text-primary">150+</p>
-                                <p className="font-body text-[10px] font-black uppercase tracking-[0.2em] text-white/30">Projects Shipped</p>
-                            </div>
-                            <div className="space-y-2">
-                                <p className="font-display text-4xl font-[900] italic text-primary">98%</p>
-                                <p className="font-body text-[10px] font-black uppercase tracking-[0.2em] text-white/30">Client Retention</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
