@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
     ShoppingBag,
     Globe,
@@ -8,7 +8,8 @@ import {
     Code2,
     Layers,
     Smartphone,
-    ArrowUpRight
+    ArrowUpRight,
+    ArrowRight
 } from 'lucide-react';
 import { useRef } from 'react';
 import gsap from 'gsap';
@@ -80,14 +81,14 @@ export default function Services() {
             sectionRef.current,
             { x: 0 },
             {
-                x: '-300vw', // Enough to cover all items
+                x: '-320vw',
                 ease: 'none',
                 scrollTrigger: {
                     trigger: triggerRef.current,
                     start: 'top top',
-                    end: '2000 top',
+                    end: '3000 top',
                     pin: true,
-                    scrub: 1,
+                    scrub: 1.2,
                     invalidateOnRefresh: true,
                 },
             }
@@ -96,81 +97,102 @@ export default function Services() {
     }, { scope: triggerRef });
 
     return (
-        <div ref={triggerRef} className="relative overflow-hidden bg-black">
+        <div ref={triggerRef} className="relative overflow-hidden bg-black py-0">
             {/* Sticky Header */}
             <div className="absolute top-24 left-6 lg:left-12 z-50">
-                <div className="section-label mb-6">
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    className="section-label mb-6"
+                >
                     <span className="dot" />
-                    Our Domain
-                </div>
-                <h2 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase italic tracking-tighter leading-tight font-display pr-4 uppercase">
-                    Core <span className="gradient-text">Expertise</span>
+                    Protocol Domain
+                </motion.div>
+                <h2 className="text-5xl md:text-7xl lg:text-9xl font-black uppercase italic tracking-[-0.05em] leading-[0.85] font-display pr-12">
+                    Core <span className="gradient-text italic">Expertise</span>
                 </h2>
-                <p className="text-white/40 text-sm md:text-base max-w-sm font-medium leading-relaxed font-body mt-4">
-                    Scroll to explore our specialized digital protocols.
+                <p className="text-white/30 text-base md:text-lg max-w-sm font-medium font-body mt-8 leading-relaxed">
+                    Swipe or scroll to navigate our high-performance digital deployment strategies.
                 </p>
             </div>
 
-            {/* Background Glows */}
+            {/* Global Ambient Glows */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-[#0088ff]/10 blur-[150px] rounded-full" />
-                <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[800px] h-[800px] bg-[#00fbff]/5 blur-[150px] rounded-full" />
+                <div className="absolute top-0 right-1/4 w-[1000px] h-[1000px] bg-[#0088ff]/10 blur-[200px] rounded-full" />
+                <div className="absolute bottom-0 left-1/4 w-[1000px] h-[1000px] bg-[#00fbff]/5 blur-[200px] rounded-full" />
             </div>
 
             <div
                 ref={sectionRef}
-                className="flex items-center h-screen relative z-10 pl-[5vw]"
-                style={{ width: '400vw' }} // Ensure container is wide enough
+                className="flex items-center h-screen relative z-10 pl-[40vw]"
+                style={{ width: '450vw' }}
             >
                 {services.map((service, i) => (
-                    <div key={i} className="w-[80vw] md:w-[60vw] lg:w-[40vw] flex-shrink-0 px-8">
+                    <div key={i} className="w-[85vw] md:w-[65vw] lg:w-[45vw] flex-shrink-0 px-10">
                         <Link href={`/services/${service.slug}`} className="block group">
-                            <div className="relative p-10 lg:p-14 rounded-[48px] border border-white/5 bg-white/[0.02] backdrop-blur-xl transition-all duration-700 hover:border-[#0088ff]/40 shadow-2xl overflow-hidden h-[500px] flex flex-col justify-between">
-                                {/* Hover background glow */}
-                                <div className="absolute -bottom-1/4 -right-1/4 w-96 h-96 bg-[#0088ff]/5 blur-[100px] group-hover:bg-[#0088ff]/20 transition-all duration-700" />
+                            <div className="relative p-12 lg:p-16 rounded-[64px] border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-3xl transition-all duration-700 hover:border-[#0088ff]/50 shadow-[0_40px_100px_rgba(0,0,0,0.5)] h-[600px] flex flex-col justify-between group-hover:translate-y-[-10px]">
+
+                                {/* Inner Card Accents */}
+                                <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-20 transition-opacity">
+                                    <service.icon className="w-40 h-40" style={{ color: service.color }} />
+                                </div>
 
                                 <div>
                                     <div
-                                        className="w-20 h-20 rounded-3xl flex items-center justify-center mb-12 shadow-2xl transition-all duration-500 border border-white/10 group-hover:scale-110"
-                                        style={{ background: `linear-gradient(135deg, ${service.color}20, transparent)` }}
+                                        className="w-24 h-24 rounded-[32px] flex items-center justify-center mb-16 shadow-3xl transition-all duration-700 border border-white/10 group-hover:rotate-[10deg]"
+                                        style={{
+                                            background: `linear-gradient(135deg, ${service.color}40, transparent)`,
+                                            boxShadow: `0 20px 50px ${service.color}20`
+                                        }}
                                     >
-                                        <service.icon className="w-10 h-10 transition-colors" style={{ color: service.color }} />
+                                        <service.icon className="w-12 h-12" style={{ color: service.color }} />
                                     </div>
-                                    <div className="text-xs font-black tracking-[0.3em] text-white/20 uppercase mb-4 font-body group-hover:text-white/40 transition-colors">
-                                        {service.category}
+
+                                    <div className="space-y-6">
+                                        <div className="text-[10px] font-black uppercase tracking-[0.4em] text-[#00fbff]/60 font-body">
+                                            {service.category}
+                                        </div>
+                                        <h3
+                                            className="text-4xl md:text-5xl lg:text-6xl font-black italic group-hover:text-white transition-colors font-display uppercase tracking-tighter leading-[0.9] pr-8"
+                                            style={{ textShadow: '0 20px 40px rgba(0,0,0,0.5)' }}
+                                        >
+                                            {service.title}
+                                        </h3>
+                                        <p className="text-white/40 text-lg md:text-xl leading-relaxed font-medium font-body max-w-md group-hover:text-white/70 transition-all">
+                                            {service.description}
+                                        </p>
                                     </div>
-                                    <h3
-                                        className="text-3xl md:text-4xl lg:text-5xl font-black italic mb-8 group-hover:text-white transition-colors font-display uppercase tracking-tight leading-none pr-4"
-                                    >
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-white/40 text-base md:text-lg leading-relaxed font-medium font-body max-w-sm lg:max-w-md group-hover:text-white/60 transition-all">
-                                        {service.description}
-                                    </p>
                                 </div>
 
-                                <div className="flex items-center gap-4 text-white/30 font-black uppercase text-xs tracking-[0.2em] group-hover:text-[#00fbff] transition-all pt-12">
-                                    <span className="pb-1 border-b border-white/10 group-hover:border-[#00fbff]">View Protocol</span>
-                                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                <div className="flex items-center justify-between pt-12">
+                                    <div className="flex items-center gap-4 text-white/30 font-black uppercase text-xs tracking-[0.3em] group-hover:text-[#00fbff] transition-all">
+                                        <span className="pb-1 border-b-2 border-white/10 group-hover:border-[#00fbff]">Protocol Details</span>
+                                        <ArrowUpRight className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                    </div>
+                                    <div className="text-[64px] font-black italic text-white/5 font-display group-hover:text-[#0088ff]/10 transition-colors tracking-tighter">
+                                        0{i + 1}
+                                    </div>
                                 </div>
+
+                                {/* Hover Glow Effect */}
+                                <div className="absolute -inset-1 bg-gradient-to-br from-[#0088ff]/20 to-transparent opacity-0 group-hover:opacity-100 blur-2xl transition-opacity -z-10 rounded-[64px]" />
                             </div>
                         </Link>
                     </div>
                 ))}
 
                 {/* Closing visual spacer */}
-                <div className="w-[40vw] flex-shrink-0 flex items-center justify-center">
-                    <div className="text-center space-y-4">
-                        <div className="w-16 h-16 rounded-full border border-white/5 flex items-center justify-center mx-auto bg-white/[0.02]">
-                            <ArrowRight className="w-6 h-6 text-white/10" />
-                        </div>
-                        <p className="text-white/10 font-display text-sm font-black uppercase tracking-[0.3em] italic">Keep Scrolling</p>
-                    </div>
+                <div className="w-[60vw] flex-shrink-0 flex items-center justify-center">
+                    <motion.div
+                        animate={{ x: [0, 20, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                        className="text-center space-y-6 opacity-20"
+                    >
+                        <ArrowRight className="w-20 h-20 text-white mx-auto" />
+                        <p className="text-white font-display text-xl font-black uppercase tracking-[0.5em] italic">End of Domain</p>
+                    </motion.div>
                 </div>
             </div>
         </div>
     );
 }
-
-// Fixed missing import
-import { ArrowRight } from 'lucide-react';
