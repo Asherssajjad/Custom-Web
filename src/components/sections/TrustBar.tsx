@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
 
 const technologies = [
     { name: 'Shopify', logo: 'https://www.vectorlogo.zone/logos/shopify/shopify-icon.svg' },
@@ -26,10 +25,10 @@ export default function TrustBar() {
 
     return (
         <section className="py-20 bg-black relative border-y border-white/5 overflow-hidden">
-            {/* Ambient Background Glow - Colorful */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle,rgba(0,136,255,0.08)_0%,transparent_70%)] pointer-events-none" />
+            {/* Ambient Background Glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle,rgba(0,136,255,0.05)_0%,transparent_70%)] pointer-events-none" />
 
-            <div className="container mx-auto px-6 relative z-10 mb-12">
+            <div className="container mx-auto px-6 relative z-10 mb-8">
                 <div className="text-center">
                     <h2 className="text-xl md:text-3xl font-black uppercase italic tracking-[0.2em] font-display">
                         Technologies & Platforms We <span className="gradient-text italic">Master</span>
@@ -38,12 +37,12 @@ export default function TrustBar() {
             </div>
 
             {/* Infinite Slider */}
-            <div className="relative flex overflow-hidden py-10">
+            <div className="relative flex overflow-hidden py-8">
                 <motion.div
                     className="flex whitespace-nowrap"
-                    animate={{ x: [0, -1035] }} // Adjust based on content width
+                    animate={{ x: [0, -2000] }} // Adjust based on content width
                     transition={{
-                        duration: 35,
+                        duration: 40,
                         repeat: Infinity,
                         ease: 'linear'
                     }}
@@ -53,16 +52,15 @@ export default function TrustBar() {
                             key={i}
                             className="flex flex-col items-center gap-4 mx-8 md:mx-12 group"
                         >
-                            <div className="tech-logo-container p-4 md:p-6 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center rounded-2xl relative overflow-hidden backdrop-blur-sm">
+                            <div className="tech-logo-container p-4 md:p-6 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center relative">
                                 <img
                                     src={tech.logo}
                                     alt={tech.name}
-                                    className="w-8 h-8 md:w-12 md:h-12 object-contain grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+                                    className="w-8 h-8 md:w-11 md:h-11 object-contain grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 ease-out 
+                                               group-hover:drop-shadow-[0_0_15px_rgba(0,136,255,0.6)]"
                                 />
-                                {/* Internal Glow on groups hover */}
-                                <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors" />
                             </div>
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-white/20 group-hover:text-primary-light transition-colors">
+                            <span className="text-[9px] font-black uppercase tracking-widest text-white/20 group-hover:text-[#00fbff] transition-colors">
                                 {tech.name}
                             </span>
                         </div>

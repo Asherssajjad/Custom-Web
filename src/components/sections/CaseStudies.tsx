@@ -37,71 +37,71 @@ export default function CaseStudies({ isPreview = false }: { isPreview?: boolean
         trigger: container.current,
         start: 'top 80%',
       },
-      y: 40,
+      y: 30,
       opacity: 0,
-      stagger: 0.2,
-      duration: 1,
+      stagger: 0.15,
+      duration: 0.8,
       ease: 'power3.out'
     });
   }, { scope: container });
 
   return (
-    <section id="case-studies" className="py-32 bg-black relative overflow-hidden">
+    <section id="case-studies" className="py-24 bg-black relative overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12">
-          <div className="max-w-2xl space-y-6">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-12">
+          <div className="max-w-2xl space-y-4">
             <div className="section-label">
               <span className="dot" />
-              <Zap className="w-4 h-4" />
+              <Zap className="w-3.5 h-3.5" />
               <span>Impact Report</span>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase italic leading-tight tracking-tighter font-display">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase italic leading-tight tracking-tighter font-display">
               Global <span className="gradient-text italic">Results</span>
             </h2>
           </div>
           {isPreview && (
-            <Link href="/case-studies" className="group flex items-center gap-3 font-bold uppercase text-[10px] tracking-widest text-white/50 hover:text-primary-light transition-all pb-2 border-b border-white/10 hover:border-primary-light">
+            <Link href="/case-studies" className="group flex items-center gap-2 font-bold uppercase text-[9px] tracking-widest text-white/40 hover:text-primary-light transition-all pb-2 border-b border-white/5 hover:border-primary-light">
               View All Cases
-              <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
             </Link>
           )}
         </div>
 
-        <div ref={container} className="grid grid-cols-1 gap-32 md:gap-48">
+        <div ref={container} className="grid grid-cols-1 gap-24 md:gap-32">
           {cases.map((project, i) => (
-            <div key={i} className="case-card grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center group">
-              <div className={`relative aspect-[16/10] rounded-[48px] overflow-hidden border border-white/10 shadow-2xl ${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
+            <div key={i} className="case-card grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center group">
+              <div className={`relative aspect-[16/10] rounded-[32px] overflow-hidden border border-white/5 shadow-2xl ${i % 2 !== 0 ? 'lg:order-2' : ''}`}>
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 grayscale-[40%] group-hover:grayscale-0 transition-transform duration-1000 ease-out"
+                  className="w-full h-full object-cover group-hover:scale-105 grayscale-[30%] group-hover:grayscale-0 transition-transform duration-1000 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-                <div className="absolute bottom-8 left-8 right-8">
-                  <div className="inline-flex glass-card px-6 py-3 rounded-2xl items-center gap-3 backdrop-blur-xl border-white/20 shadow-2xl">
-                    <CheckCircle2 className="w-5 h-5 text-primary-light" />
-                    <span className="font-black text-xl italic uppercase tracking-tighter font-display">{project.impact}</span>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-xl">
+                    <CheckCircle2 className="w-4 h-4 text-primary-light" />
+                    <span className="font-black text-lg italic uppercase tracking-tighter font-display text-white">{project.impact}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-8">
-                <div className="badge">{project.category}</div>
-                <h3 className="text-4xl md:text-5xl lg:text-6xl font-black italic tracking-tighter leading-[0.9] font-display uppercase">{project.title}</h3>
-                <p className="text-white/45 text-lg font-medium font-body leading-relaxed max-w-lg">
+              <div className="space-y-6">
+                <div className="badge text-[9px] px-3 py-1">{project.category}</div>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black italic tracking-tighter leading-[0.95] font-display uppercase">{project.title}</h3>
+                <p className="text-white/40 text-sm md:text-base font-medium font-body leading-relaxed max-w-md">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2.5">
                   {project.tags.map(tag => (
-                    <span key={tag} className="px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-[9px] font-bold uppercase tracking-[0.15em] font-body text-white/40">
+                    <span key={tag} className="px-3.5 py-1.5 rounded-full border border-white/5 bg-white/[0.02] text-[8px] font-bold uppercase tracking-widest font-body text-white/30">
                       {tag}
                     </span>
                   ))}
                 </div>
-                <Link href={`/case-studies/${project.slug}`} className="block pt-6">
-                  <span className="group inline-flex items-center gap-3 text-xl font-black italic group-hover:text-primary-light transition-all font-display uppercase tracking-tight">
+                <Link href={`/case-studies/${project.slug}`} className="block pt-4">
+                  <span className="group inline-flex items-center gap-2.5 text-lg font-black italic group-hover:text-primary-light transition-all font-display uppercase tracking-tight">
                     Case Study Protocol
-                    <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform" />
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                   </span>
                 </Link>
               </div>

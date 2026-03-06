@@ -42,11 +42,11 @@ function GridVisual() {
                 {Array.from({ length: 12 }).map((_, i) => (
                     <motion.div
                         key={i}
-                        className={`w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center ${i === 5 ? 'border-primary-light/60 bg-primary/10' : 'bg-white/[0.02]'}`}
-                        animate={i === 5 ? { scale: [1, 1.15, 1], borderColor: ['rgba(73,136,196,0.6)', 'rgba(73,136,196,1)', 'rgba(73,136,196,0.6)'] } : {}}
+                        className={`w-8 h-8 rounded-lg border border-white/10 flex items-center justify-center ${i === 5 ? 'border-[#00fbff]/60 bg-[#0088ff]/10' : 'bg-white/[0.02]'}`}
+                        animate={i === 5 ? { scale: [1, 1.1, 1], borderColor: ['rgba(0,251,255,0.4)', 'rgba(0,251,255,1)', 'rgba(0,251,255,0.4)'] } : {}}
                         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.1 }}
                     >
-                        {i === 5 && <Search className="w-4 h-4 text-primary-light" />}
+                        {i === 5 && <Search className="w-3.5 h-3.5 text-[#00fbff]" />}
                     </motion.div>
                 ))}
             </div>
@@ -56,34 +56,22 @@ function GridVisual() {
 
 function CodeVisual() {
     const lines = [
-        { num: 1, code: '.container {', indent: 0 },
+        { num: 1, code: '.main {', indent: 0 },
         { num: 2, code: 'display: flex;', indent: 1 },
-        { num: 3, code: 'align-items: center;', indent: 1 },
-        { num: 4, code: 'height: 100vh;', indent: 1 },
-        { num: 5, code: 'background: linear...', indent: 1 },
-        { num: 6, code: '}', indent: 0 },
+        { num: 3, code: 'gap: 20px;', indent: 1 },
+        { num: 4, code: '}', indent: 0 },
     ];
     return (
-        <div className="relative w-full h-32 overflow-hidden">
-            <div className="flex gap-1.5 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-red-500/60" />
-                <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/60" />
-                <div className="w-2.5 h-2.5 rounded-full bg-green-500/60" />
-                <div className="ml-auto flex gap-2">
-                    {['HTML', 'React', 'CSS'].map((t, i) => (
-                        <span key={t} className={`text-[9px] px-2 py-0.5 rounded-sm font-mono font-bold ${i === 2 ? 'bg-primary/20 text-primary-light' : 'text-white/20'}`}>{t}</span>
-                    ))}
-                </div>
+        <div className="relative w-full h-32 overflow-hidden px-2">
+            <div className="flex gap-1.5 mb-3">
+                {['#ff5f57', '#ffbd2e', '#27c93f'].map(c => <div key={c} className="w-2 h-2 rounded-full" style={{ background: c }} />)}
             </div>
-            <div className="space-y-1 font-mono text-[11px]">
+            <div className="space-y-1.5 font-mono text-[10px]">
                 {lines.map((l) => (
-                    <motion.div key={l.num} className="flex gap-3" initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: l.num * 0.1 }}>
-                        <span className="text-white/20 w-3 text-right flex-shrink-0">{l.num}</span>
-                        <span className="text-white/50" style={{ paddingLeft: l.indent * 12 }}>
-                            {l.indent > 0 ? <span className="text-primary-light/70">{l.code.split(':')[0]}</span> : null}
-                            {l.indent > 0 ? <span className="text-white/30">{l.code.includes(':') ? ':' + l.code.split(':').slice(1).join(':') : ''}</span> : <span className="text-white/40">{l.code}</span>}
-                        </span>
-                    </motion.div>
+                    <div key={l.num} className="flex gap-4">
+                        <span className="text-white/20 w-3">{l.num}</span>
+                        <span className="text-white/40" style={{ paddingLeft: l.indent * 12 }}>{l.code}</span>
+                    </div>
                 ))}
             </div>
         </div>
@@ -91,50 +79,41 @@ function CodeVisual() {
 }
 
 function StatsVisual() {
-    const stats = [
-        { label: 'Software speed', val: '+38%', up: true },
-        { label: 'Workflow efficiency', val: '+25%', up: true },
-        { label: 'Operational cost', val: '-11%', up: false },
-        { label: 'Update available', val: 'Update ↑', up: true, highlight: true },
-    ];
     return (
-        <div className="w-full h-32 space-y-2 overflow-hidden">
-            {stats.map((s, i) => (
-                <motion.div key={i} className={`flex items-center justify-between px-3 py-1.5 rounded-lg ${s.highlight ? 'bg-primary/10 border border-primary/20' : 'bg-white/[0.02] border border-white/5'}`}
-                    initial={{ opacity: 0, x: 16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.15, ease: 'power3.out' as any }}
-                >
-                    <span className="text-[11px] text-white/50 font-medium">{s.label}</span>
-                    <span className={`text-[11px] font-black ${s.highlight ? 'text-primary-light' : s.up ? 'text-emerald-400' : 'text-rose-400'}`}>{s.val}</span>
-                </motion.div>
+        <div className="w-full h-32 space-y-2.5 px-2 py-1">
+            {[['Speed', '+42%', '#27c93f'], ['Perf.', '98/100', '#00fbff'], ['ROAS', '8.4x', '#ffbd2e']].map(([l, v, c], i) => (
+                <div key={i} className="flex items-center justify-between p-2 rounded-lg bg-white/[0.03] border border-white/5">
+                    <span className="text-[10px] text-white/40 font-bold uppercase tracking-widest">{l}</span>
+                    <span className="text-[10px] font-black" style={{ color: c }}>{v}</span>
+                </div>
             ))}
         </div>
     );
 }
 
 export default function Process() {
+    const sectionRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
         gsap.from('.process-card', {
             scrollTrigger: {
-                trigger: containerRef.current,
-                start: 'top 80%',
+                trigger: sectionRef.current,
+                start: 'top 75%',
                 toggleActions: 'play none none none'
             },
-            y: 40,
+            y: 30,
             opacity: 0,
             stagger: 0.15,
             duration: 0.8,
             ease: 'power3.out',
         });
-    }, { scope: containerRef });
+    }, { scope: sectionRef });
 
     return (
-        <section className="py-32 bg-black relative overflow-hidden">
-            {/* Background Glows */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(15,40,84,0.15),transparent)] pointer-events-none" />
+        <section ref={sectionRef} className="py-32 bg-black relative overflow-hidden">
+            {/* Background Glows for the section */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(0,136,255,0.05),transparent)] pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
                 {/* Header */}
@@ -146,7 +125,7 @@ export default function Process() {
                     <h2 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase italic tracking-tighter font-display leading-[0.9]">
                         How We <span className="gradient-text">Operate</span>
                     </h2>
-                    <p className="text-white/40 max-w-xl mx-auto text-lg font-medium font-body leading-relaxed">
+                    <p className="text-white/40 max-w-xl mx-auto text-base md:text-lg font-medium font-body leading-relaxed">
                         Three precision stages from discovery to ongoing domination.
                     </p>
                 </div>
@@ -156,10 +135,10 @@ export default function Process() {
                     {steps.map((step, i) => (
                         <div
                             key={i}
-                            className="process-card relative p-8 rounded-[32px] border border-white/10 bg-white/[0.03] backdrop-blur-md hover:border-primary-light/30 hover:bg-white/[0.05] transition-all duration-500 group flex flex-col gap-8 shadow-2xl"
+                            className="process-card relative p-8 rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-md hover:border-[#0088ff]/40 hover:bg-white/[0.04] transition-all duration-500 group flex flex-col gap-8 shadow-2xl"
                         >
                             {/* Visual mockup area */}
-                            <div className="rounded-2xl border border-white/10 bg-black/60 p-5 overflow-hidden shadow-inner">
+                            <div className="rounded-2xl border border-white/5 bg-black/60 p-5 overflow-hidden shadow-inner">
                                 {step.visual === 'grid' && <GridVisual />}
                                 {step.visual === 'code' && <CodeVisual />}
                                 {step.visual === 'stats' && <StatsVisual />}
@@ -168,16 +147,16 @@ export default function Process() {
                             {/* Text */}
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
-                                    <span className="text-primary-light font-black italic text-xl font-display">{step.num}</span>
-                                    <h3 className="text-2xl font-black uppercase italic tracking-tight font-display group-hover:text-primary-light transition-colors">{step.title}</h3>
+                                    <span className="text-[#00fbff] font-black italic text-xl font-display">{step.num}</span>
+                                    <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tight font-display group-hover:text-[#00fbff] transition-colors">{step.title}</h3>
                                 </div>
                                 <p className="text-white/45 text-sm md:text-base font-medium font-body leading-relaxed">{step.desc}</p>
                             </div>
 
-                            {/* Step Connector (Mobile Only Decoration or subtle hover) */}
+                            {/* Step Connector */}
                             {i < steps.length - 1 && (
-                                <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-20 opacity-20 group-hover:opacity-100 transition-opacity">
-                                    <ChevronRight className="w-8 h-8 text-primary-light" />
+                                <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-20 opacity-20">
+                                    <ChevronRight className="w-8 h-8 text-[#00fbff]" />
                                 </div>
                             )}
                         </div>

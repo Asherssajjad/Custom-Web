@@ -32,6 +32,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} font-sans antialiased bg-black text-white`}
       >
+        <div className="global-glow" />
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>
