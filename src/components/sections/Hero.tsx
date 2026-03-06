@@ -67,7 +67,7 @@ export default function Hero() {
                         {['We Build', 'High-Performance', 'Digital Brands'].map((line, i) => (
                             <div key={i} className="overflow-hidden">
                                 <h1
-                                    className="h-word inline-block font-display text-6xl md:text-7xl lg:text-8xl uppercase leading-[0.9] tracking-[-0.02em]"
+                                    className="h-word inline-block font-display text-5xl md:text-6xl lg:text-7xl font-bold uppercase leading-[0.95] tracking-tight"
                                     style={i === 1 ? {
                                         background: 'linear-gradient(90deg,#818cf8,#a78bfa)',
                                         WebkitBackgroundClip: 'text',
@@ -82,7 +82,7 @@ export default function Hero() {
                         ))}
                     </div>
 
-                    <p className="h-sub font-body text-white/50 text-sm md:text-base font-medium max-w-sm leading-relaxed">
+                    <p className="h-sub font-body text-white/50 text-xs md:text-sm font-medium max-w-sm leading-relaxed">
                         Accelerate your growth with data-driven design, engineering, and digital marketing
                         strategies crafted for impact.
                     </p>
