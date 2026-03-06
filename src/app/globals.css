@@ -1,133 +1,90 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   DESIGN TOKENS - BRIGHTER BLUE PALETTE
+   DESIGN TOKENS - VIBRANT & ELECTRIC BLUE
 ═══════════════════════════════════════════ */
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --primary-deep: #0F2854;
-  --primary: #1e5bb0;
-  /* Slightly brighter than #1C4D8D */
-  --primary-light: #4988C4;
-  --primary-accent: #BDE8F5;
-  --primary-foreground: #ffffff;
-  --muted: rgba(255, 255, 255, 0.45);
-  --border: rgba(255, 255, 255, 0.1);
-  --card: rgba(255, 255, 255, 0.03);
 
-  /* Animated Glow Colors */
-  --glow-1: rgba(28, 77, 141, 0.4);
-  --glow-2: rgba(73, 136, 196, 0.3);
-  --glow-3: rgba(189, 232, 245, 0.15);
+  /* BRIGHTER ELECTRIC BLUE PALETTE */
+  --primary: #0088ff;
+  /* Electric Blue */
+  --primary-light: #00d4ff;
+  /* Cyan/Sky for glow */
+  --primary-deep: #0044cc;
+  /* Solid Blue */
+  --primary-accent: #ffffff;
+
+  --muted: rgba(255, 255, 255, 0.6);
+  --border: rgba(255, 255, 255, 0.15);
+  --card: rgba(255, 255, 255, 0.05);
+
+  /* New Neon Glow Shadows */
+  --neon-glow: 0 0 20px rgba(0, 136, 255, 0.5), 0 0 40px rgba(0, 136, 255, 0.2);
 }
 
-/* ═══════════════════════════════════════════
-   TAILWIND THEME REGISTER
-═══════════════════════════════════════════ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-primary-deep: var(--primary-deep);
   --color-primary-light: var(--primary-light);
+  --color-primary-deep: var(--primary-deep);
   --color-primary-accent: var(--primary-accent);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-muted: var(--muted);
   --color-border: var(--border);
-  --color-card: var(--card);
 
   --font-display: var(--font-poppins), system-ui, sans-serif;
   --font-body: var(--font-poppins), system-ui, sans-serif;
 }
 
 /* ═══════════════════════════════════════════
-   BASE
+   GLOBAL STYLES
 ═══════════════════════════════════════════ */
-html {
-  scroll-behavior: smooth;
-  font-size: 15px;
-}
-
 body {
-  background: #000;
+  background-color: #000;
   color: #fff;
   font-family: var(--font-poppins), sans-serif;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ═══════════════════════════════════════════
-   ENHANCED GLOW UTILITIES
-═══════════════════════════════════════════ */
-
-.glow-heavy {
-  filter: blur(100px);
-  pointer-events: none;
-  border-radius: 50%;
-  opacity: 0.6;
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #4988C4, #BDE8F5, #ffffff);
-  background-size: 200% auto;
+  background: linear-gradient(90deg, #0088ff, #00d4ff, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shine 5s linear infinite;
 }
 
-@keyframes shine {
-  to {
-    background-position: 200% center;
-  }
+.btn-primary {
+  background: #0088ff;
+  color: white;
+  box-shadow: 0 0 15px rgba(0, 136, 255, 0.5);
+  border: none;
 }
 
-.premium-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.premium-card:hover {
-  border-color: rgba(73, 136, 196, 0.5);
-  background: rgba(255, 255, 255, 0.05);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 40px -10px rgba(28, 77, 141, 0.4);
-}
-
-.btn-indigo {
-  background: linear-gradient(135deg, var(--primary), #4988C4);
-  box-shadow: 0 0 30px rgba(28, 77, 141, 0.4);
-  transition: all 0.3s ease;
-}
-
-.btn-indigo:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 45px rgba(28, 77, 141, 0.6);
+.btn-primary:hover {
+  background: #00d4ff;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
 }
 
 .section-label {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 136, 255, 0.1);
+  border: 1px solid rgba(0, 136, 255, 0.3);
+  color: #00d4ff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }
 
-/* ═══════════════════════════════════════════
-   PLATFORMS BAR REFINEMENT
-═══════════════════════════════════════════ */
 .tech-logo-container {
-  padding: 12px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
 .tech-logo-container:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(73, 136, 196, 0.3);
-  transform: translateY(-2px);
+  background: rgba(0, 136, 255, 0.1);
+  border-color: #0088ff;
+  box-shadow: 0 0 20px rgba(0, 136, 255, 0.3);
 }
