@@ -95,71 +95,83 @@ export default function Process() {
     const sectionRef = useRef<HTMLDivElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    useGSAP(() => {
-        gsap.from('.process-card', {
-            scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top 75%',
-                toggleActions: 'play none none none'
-            },
-            y: 30,
-            opacity: 0,
-            stagger: 0.15,
-            duration: 0.8,
-            ease: 'power3.out',
-        });
-    }, { scope: sectionRef });
-
+    // Simplified Entrance — No GSAP opacity manipulation if it fails
+    // Using Framer Motion for safer triggering
     return (
         <section ref={sectionRef} className="py-32 bg-black relative overflow-hidden">
             {/* Background Glows for the section */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(0,136,255,0.05),transparent)] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(0,136,255,0.06),transparent)] pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-24 space-y-6">
-                    <div className="section-label mx-auto">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="section-label mx-auto"
+                    >
                         <span className="dot" />
                         Our Process
-                    </div>
-                    <h2 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase italic tracking-tighter font-display leading-[0.9] pr-2">
-                        How We <span className="gradient-text">Operate</span>
-                    </h2>
-                    <p className="text-white/40 max-w-xl mx-auto text-base md:text-lg font-medium font-body leading-relaxed">
+                    </motion.div>
+                    <motion.h2
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-4xl md:text-5xl lg:text-7xl font-black uppercase italic tracking-tighter font-display leading-[0.9] pr-4 uppercase"
+                    >
+                        How We <span className="gradient-text italic">Operate</span>
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 0.4 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="text-white max-w-xl mx-auto text-base md:text-lg font-medium font-body leading-relaxed"
+                    >
                         Three precision stages from discovery to ongoing domination.
-                    </p>
+                    </motion.p>
                 </div>
 
                 {/* Cards grid */}
-                <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-10">
                     {steps.map((step, i) => (
-                        <div
+                        <motion.div
                             key={i}
-                            className="process-card relative p-8 rounded-[32px] border border-white/10 bg-white/[0.02] backdrop-blur-md hover:border-[#0088ff]/40 hover:bg-white/[0.04] transition-all duration-500 group flex flex-col gap-8 shadow-2xl"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ delay: i * 0.15, duration: 0.8 }}
+                            className="process-card relative p-10 rounded-[40px] border border-white/5 bg-white/[0.02] backdrop-blur-3xl hover:border-[#0088ff]/40 hover:bg-white/[0.04] transition-all duration-500 group flex flex-col gap-10 shadow-3xl"
                         >
                             {/* Visual mockup area */}
-                            <div className="rounded-2xl border border-white/5 bg-black/60 p-5 overflow-hidden shadow-inner">
+                            <div className="rounded-3xl border border-white/5 bg-black/60 p-6 overflow-hidden shadow-inner flex items-center justify-center">
                                 {step.visual === 'grid' && <GridVisual />}
                                 {step.visual === 'code' && <CodeVisual />}
                                 {step.visual === 'stats' && <StatsVisual />}
                             </div>
 
                             {/* Text */}
-                            <div className="space-y-4">
-                                <div className="flex items-center gap-3">
-                                    <span className="text-[#00fbff] font-black italic text-xl font-display">{step.num}</span>
-                                    <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tight font-display group-hover:text-[#00fbff] transition-colors pr-1">{step.title}</h3>
+                            <div className="space-y-5">
+                                <div className="flex items-center gap-4">
+                                    <span className="text-[#00fbff] font-black italic text-2xl font-display">{step.num}</span>
+                                    <h3
+                                        className="text-2xl md:text-3xl font-black uppercase italic tracking-tight font-display group-hover:text-[#00fbff] transition-colors pr-4 uppercase"
+                                    >
+                                        {step.title}
+                                    </h3>
                                 </div>
-                                <p className="text-white/45 text-sm md:text-base font-medium font-body leading-relaxed">{step.desc}</p>
+                                <p className="text-white/40 text-sm md:text-base font-medium font-body leading-relaxed max-w-xs">{step.desc}</p>
                             </div>
 
                             {/* Step Connector */}
                             {i < steps.length - 1 && (
-                                <div className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 z-20 opacity-20">
-                                    <ChevronRight className="w-8 h-8 text-[#00fbff]" />
+                                <div className="hidden lg:block absolute -right-6 top-1/2 -translate-y-1/2 z-20 opacity-20 group-hover:opacity-100 transition-all">
+                                    <ChevronRight className="w-10 h-10 text-[#00fbff]" />
                                 </div>
                             )}
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
