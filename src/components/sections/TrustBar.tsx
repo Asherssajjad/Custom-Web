@@ -30,7 +30,7 @@ export default function TrustBar() {
 
             <div className="container mx-auto px-6 relative z-10 mb-8">
                 <div className="text-center">
-                    <h2 className="text-xl md:text-3xl font-black uppercase italic tracking-[0.2em] font-display">
+                    <h2 className="text-xl md:text-3xl font-black uppercase italic tracking-[0.2em] font-display pr-1">
                         Technologies & Platforms We <span className="gradient-text italic">Master</span>
                     </h2>
                 </div>
@@ -40,7 +40,7 @@ export default function TrustBar() {
             <div className="relative flex overflow-hidden py-8">
                 <motion.div
                     className="flex whitespace-nowrap"
-                    animate={{ x: [0, -2000] }} // Adjust based on content width
+                    animate={{ x: [0, -2000] }}
                     transition={{
                         duration: 40,
                         repeat: Infinity,
@@ -56,11 +56,11 @@ export default function TrustBar() {
                                 <img
                                     src={tech.logo}
                                     alt={tech.name}
-                                    className="w-8 h-8 md:w-11 md:h-11 object-contain grayscale opacity-30 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 ease-out 
+                                    className="w-8 h-8 md:w-11 md:h-11 object-contain opacity-80 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500 ease-out 
                                                group-hover:drop-shadow-[0_0_15px_rgba(0,136,255,0.6)]"
                                 />
                             </div>
-                            <span className="text-[9px] font-black uppercase tracking-widest text-white/20 group-hover:text-[#00fbff] transition-colors">
+                            <span className="text-[9px] font-black uppercase tracking-widest text-white/40 group-hover:text-[#00fbff] transition-colors">
                                 {tech.name}
                             </span>
                         </div>

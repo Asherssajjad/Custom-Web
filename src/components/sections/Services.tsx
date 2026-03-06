@@ -102,7 +102,7 @@ export default function Services() {
                             <span className="dot" />
                             Our Domain
                         </div>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase italic tracking-tighter leading-tight font-display">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase italic tracking-tighter leading-tight font-display pr-2">
                             Core <span className="gradient-text">Expertise</span>
                         </h2>
                     </div>
@@ -125,7 +125,7 @@ export default function Services() {
                                 <div className="text-[9px] font-bold tracking-[0.2em] text-white/30 uppercase mb-3 font-body">
                                     {service.category}
                                 </div>
-                                <h3 className="text-lg md:text-xl font-black mb-4 flex items-center justify-between group-hover:text-primary-light transition-colors font-display uppercase tracking-tight italic">
+                                <h3 className="text-lg md:text-xl font-black mb-4 flex items-center justify-between group-hover:text-primary-light transition-colors font-display uppercase tracking-tight italic pr-1">
                                     {service.title}
                                 </h3>
                                 <p className="text-white/40 text-xs md:text-sm leading-relaxed font-medium mb-10 line-clamp-3">

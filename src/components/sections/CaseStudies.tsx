@@ -55,7 +55,7 @@ export default function CaseStudies({ isPreview = false }: { isPreview?: boolean
               <Zap className="w-3.5 h-3.5" />
               <span>Impact Report</span>
             </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase italic leading-tight tracking-tighter font-display">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase italic leading-tight tracking-tighter font-display pr-2">
               Global <span className="gradient-text italic">Results</span>
             </h2>
           </div>
@@ -80,14 +80,14 @@ export default function CaseStudies({ isPreview = false }: { isPreview?: boolean
                 <div className="absolute bottom-6 left-6 right-6">
                   <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/10 shadow-xl">
                     <CheckCircle2 className="w-4 h-4 text-primary-light" />
-                    <span className="font-black text-lg italic uppercase tracking-tighter font-display text-white">{project.impact}</span>
+                    <span className="font-black text-lg italic uppercase tracking-tighter font-display text-white pr-1">{project.impact}</span>
                   </div>
                 </div>
               </div>
 
               <div className="space-y-6">
                 <div className="badge text-[9px] px-3 py-1">{project.category}</div>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black italic tracking-tighter leading-[0.95] font-display uppercase">{project.title}</h3>
+                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black italic tracking-tighter leading-[0.95] font-display uppercase pr-2">{project.title}</h3>
                 <p className="text-white/40 text-sm md:text-base font-medium font-body leading-relaxed max-w-md">
                   {project.description}
                 </p>
@@ -99,7 +99,7 @@ export default function CaseStudies({ isPreview = false }: { isPreview?: boolean
                   ))}
                 </div>
                 <Link href={`/case-studies/${project.slug}`} className="block pt-4">
-                  <span className="group inline-flex items-center gap-2.5 text-lg font-black italic group-hover:text-primary-light transition-all font-display uppercase tracking-tight">
+                  <span className="group inline-flex items-center gap-2.5 text-lg font-black italic group-hover:text-primary-light transition-all font-display uppercase tracking-tight pr-1">
                     Case Study Protocol
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                   </span>

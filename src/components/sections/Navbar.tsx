@@ -38,14 +38,14 @@ export default function Navbar() {
                             <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/40 transition-all">
                                 <Zap className="w-4 h-4 text-white group-hover:text-primary transition-colors" />
                             </div>
-                            <span className="font-display text-2xl font-[900] italic uppercase tracking-tight text-white">
+                            <span className="font-display text-2xl font-[900] italic uppercase tracking-tight text-white pr-1">
                                 Lumina
                             </span>
                         </Link>
 
                         {/* Center pill nav – desktop */}
                         <div className="hidden lg:flex flex-1 justify-center">
-                            <SpotlightNavbar items={navLinks} defaultActiveIndex={0} />
+                            <SpotlightNavbar items={navLinks} />
                         </div>
 
                         {/* CTA – desktop */}
@@ -89,7 +89,7 @@ export default function Navbar() {
                                 key={link.label}
                                 href={link.href}
                                 onClick={() => setIsOpen(false)}
-                                className="font-display text-5xl font-[900] uppercase italic tracking-tight flex items-center justify-between group hover:text-primary transition-colors"
+                                className="font-display text-5xl font-[900] uppercase italic tracking-tight flex items-center justify-between group hover:text-primary transition-colors pr-2"
                             >
                                 <span>{link.label}</span>
                                 <ChevronRight className="w-7 h-7 text-primary opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all" />
@@ -99,7 +99,7 @@ export default function Navbar() {
                         <Link
                             href="/contact"
                             onClick={() => setIsOpen(false)}
-                            className="mt-6 btn-indigo text-center justify-center text-xl"
+                            className="mt-6 btn-primary text-center justify-center text-xl rounded-full"
                         >
                             Let's Talk
                         </Link>

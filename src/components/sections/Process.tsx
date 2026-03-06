@@ -122,7 +122,7 @@ export default function Process() {
                         <span className="dot" />
                         Our Process
                     </div>
-                    <h2 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase italic tracking-tighter font-display leading-[0.9]">
+                    <h2 className="text-4xl md:text-5xl lg:text-7xl font-black uppercase italic tracking-tighter font-display leading-[0.9] pr-2">
                         How We <span className="gradient-text">Operate</span>
                     </h2>
                     <p className="text-white/40 max-w-xl mx-auto text-base md:text-lg font-medium font-body leading-relaxed">
@@ -148,7 +148,7 @@ export default function Process() {
                             <div className="space-y-4">
                                 <div className="flex items-center gap-3">
                                     <span className="text-[#00fbff] font-black italic text-xl font-display">{step.num}</span>
-                                    <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tight font-display group-hover:text-[#00fbff] transition-colors">{step.title}</h3>
+                                    <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tight font-display group-hover:text-[#00fbff] transition-colors pr-1">{step.title}</h3>
                                 </div>
                                 <p className="text-white/45 text-sm md:text-base font-medium font-body leading-relaxed">{step.desc}</p>
                             </div>
