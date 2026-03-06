@@ -29,54 +29,62 @@ export default function Hero() {
             ref={container}
             className="relative min-h-screen flex items-center overflow-hidden bg-black"
         >
-            {/* Background Glow Elements */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#0F2854]/30 rounded-full blur-[120px] pointer-events-none" />
-                <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#1C4D8D]/20 rounded-full blur-[150px] pointer-events-none" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-radial-gradient from-[#4988C4]/5 to-transparent blur-[100px] pointer-events-none" />
+            {/* Background Glow Elements - Intensified and Brightened */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                {/* Large Center Glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[800px] bg-[#1C4D8D]/25 blur-[160px] pointer-events-none opacity-60" />
+
+                {/* Accent Glows */}
+                <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-[#0F2854]/40 blur-[130px] pointer-events-none" />
+                <div className="absolute bottom-1/4 -right-1/4 w-[700px] h-[700px] bg-[#4988C4]/20 blur-[150px] pointer-events-none" />
+
+                {/* Floating Soft Lights */}
+                <motion.div
+                    animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.3, 0.5, 0.3],
+                        x: [0, 50, 0],
+                        y: [0, -30, 0]
+                    }}
+                    transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute top-[20%] right-[15%] w-96 h-96 bg-[#BDE8F5]/10 blur-[110px]"
+                />
             </div>
 
-            {/* Grid */}
+            {/* Grid - Brighter and more visible */}
             <div className="absolute inset-0 pointer-events-none z-0"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(73,136,196,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(73,136,196,0.05) 1px,transparent 1px)`,
-                    backgroundSize: '48px 48px',
-                    maskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, black 40%, transparent 100%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, black 40%, transparent 100%)',
+                    backgroundImage: `linear-gradient(rgba(73,136,196,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(73,136,196,0.08) 1px,transparent 1px)`,
+                    backgroundSize: '54px 54px',
+                    maskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 40%, transparent 100%)',
+                    WebkitMaskImage: 'radial-gradient(ellipse 70% 70% at 50% 50%, black 40%, transparent 100%)',
                 }}
             />
 
             {/* Orbs – matching screenshot positions with new colors */}
-            <motion.div className="h-orb absolute top-16 right-16 w-14 h-14 rounded-full pointer-events-none z-5"
-                style={{ background: 'radial-gradient(circle, #BDE8F5 0%, #4988C4 60%, transparent 100%)', boxShadow: '0 0 50px 16px rgba(73,136,196,0.4)' }}
-                animate={{ y: [0, -16, 0], x: [0, 8, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            <motion.div className="h-orb absolute top-20 right-20 w-16 h-16 rounded-full pointer-events-none z-5"
+                style={{ background: 'radial-gradient(circle, #BDE8F5 0%, #4988C4 60%, transparent 100%)', boxShadow: '0 0 60px 20px rgba(189,232,245,0.45)' }}
+                animate={{ y: [0, -20, 0], x: [0, 10, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
             />
-            <motion.div className="h-orb absolute bottom-28 left-8 w-8 h-8 rounded-full pointer-events-none z-5"
-                style={{ background: 'radial-gradient(circle, #4988C4, #1C4D8D)', boxShadow: '0 0 35px 10px rgba(28, 77, 141, 0.3)' }}
-                animate={{ y: [0, 14, 0], x: [0, -5, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-            />
-            <motion.div className="h-orb absolute top-[55%] right-6 w-5 h-5 rounded-full pointer-events-none z-5"
-                style={{ background: '#1C4D8D', boxShadow: '0 0 24px 8px rgba(15, 40, 84, 0.4)' }}
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}
+            <motion.div className="h-orb absolute bottom-32 left-12 w-10 h-10 rounded-full pointer-events-none z-5"
+                style={{ background: 'radial-gradient(circle, #4988C4, #1C4D8D)', boxShadow: '0 0 45px 15px rgba(73,136,196,0.4)' }}
+                animate={{ y: [0, 15, 0], x: [0, -8, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
             />
 
             {/* Content */}
-            <div className="container mx-auto px-6 lg:px-12 pt-32 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div className="container mx-auto px-6 lg:px-12 pt-32 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
 
                 {/* LEFT */}
-                <div className="space-y-7">
-
-                    {/* Big headline */}
+                <div className="space-y-8">
                     <div className="space-y-0 leading-none">
                         {['We Build', 'High-Performance', 'Digital Brands'].map((line, i) => (
                             <div key={i} className="overflow-hidden">
                                 <h1
-                                    className="h-word inline-block font-display text-5xl md:text-6xl lg:text-7xl font-bold uppercase leading-[0.95] tracking-tight"
+                                    className="h-word inline-block font-display text-5xl md:text-6xl lg:text-[5.5rem] font-bold uppercase leading-[0.92] tracking-tight"
                                     style={i === 1 ? {
-                                        background: 'linear-gradient(90deg,#4988C4,#BDE8F5)',
+                                        background: 'linear-gradient(90deg,#4988C4, #BDE8F5, #ffffff)',
                                         WebkitBackgroundClip: 'text',
                                         WebkitTextFillColor: 'transparent',
                                         backgroundClip: 'text',
@@ -89,16 +97,16 @@ export default function Hero() {
                         ))}
                     </div>
 
-                    <p className="h-sub font-body text-white/50 text-xs md:text-sm font-medium max-w-sm leading-relaxed">
+                    <p className="h-sub font-body text-white/60 text-sm md:text-base font-medium max-w-sm leading-relaxed ring-offset-4 ring-white/5">
                         Accelerate your growth with data-driven design, engineering, and digital marketing
                         strategies crafted for impact.
                     </p>
 
-                    <div className="flex flex-wrap gap-3">
-                        <Link href="/contact" className="h-btn btn-primary">
+                    <div className="flex flex-wrap gap-4 pt-2">
+                        <Link href="/contact" className="h-btn btn-primary px-10 py-4 text-sm font-black">
                             Start Project
                         </Link>
-                        <Link href="/case-studies" className="h-btn btn-ghost">
+                        <Link href="/case-studies" className="h-btn btn-ghost px-10 py-4 text-sm font-bold">
                             View Our Work
                         </Link>
                     </div>
@@ -106,86 +114,79 @@ export default function Hero() {
 
                 {/* RIGHT — floating 3D dashboard */}
                 <div className="relative flex items-center justify-center">
-                    {/* Big glow behind */}
-                    <div className="absolute w-[400px] h-[400px] rounded-full pointer-events-none"
-                        style={{ background: 'radial-gradient(circle, rgba(28,77,141,0.2) 0%, transparent 70%)' }} />
+                    {/* Intense glow behind dashboard */}
+                    <motion.div
+                        animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+                        transition={{ duration: 8, repeat: Infinity }}
+                        className="absolute w-[500px] h-[500px] rounded-full pointer-events-none"
+                        style={{ background: 'radial-gradient(circle, rgba(28,77,141,0.3) 0%, transparent 70%)' }}
+                    />
 
                     <motion.div
-                        className="h-card w-full max-w-[420px]"
-                        animate={{ y: [0, -14, 0] }}
-                        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-                        style={{ filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.7))' }}
+                        className="h-card w-full max-w-[450px]"
+                        animate={{ y: [0, -20, 0] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+                        style={{ filter: 'drop-shadow(0 40px 80px rgba(0,0,0,0.8))' }}
                     >
-                        <div className="rounded-2xl p-5 overflow-hidden" style={{
-                            background: 'linear-gradient(145deg, rgba(15,40,84,0.95) 0%, rgba(5,10,30,0.98) 100%)',
-                            border: '1px solid rgba(73,136,196,0.2)',
-                            transform: 'perspective(1200px) rotateY(-10deg) rotateX(5deg)',
-                            boxShadow: '0 0 0 1px rgba(73,136,196,0.1), 0 30px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)',
+                        <div className="rounded-2xl p-6 overflow-hidden backdrop-blur-md" style={{
+                            background: 'linear-gradient(145deg, rgba(15,40,84,0.95) 0%, rgba(5,10,25,0.98) 100%)',
+                            border: '1px solid rgba(73,136,196,0.3)',
+                            transform: 'perspective(1500px) rotateY(-8deg) rotateX(4deg)',
+                            boxShadow: '0 0 0 1px rgba(28,77,141,0.2), 0 35px 100px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)',
                         }}>
-                            {/* Header */}
-                            <div className="flex justify-between items-start mb-4 pb-3 border-b border-white/5">
+                            {/* Dashboard Content - matching screenshot colors but brighter */}
+                            <div className="flex justify-between items-start mb-6 pb-4 border-b border-white/10">
                                 <div>
-                                    <p className="font-body text-[10px] font-bold uppercase tracking-[0.25em] text-white/30">Dashboard</p>
-                                    <p className="font-body text-xs text-white/55 font-medium mt-0.5">Key Metrics — Mar 2026</p>
+                                    <p className="font-body text-[10px] font-bold uppercase tracking-[0.3em] text-primary-accent opacity-60">Insight Hub</p>
+                                    <p className="font-body text-xs text-white/70 font-medium mt-0.5">Global Metrics — 2026</p>
                                 </div>
-                                <div className="flex gap-1.5">
-                                    {['#ef4444', '#f59e0b', '#22c55e'].map((c) => (
-                                        <div key={c} className="w-2 h-2 rounded-full" style={{ background: c, opacity: 0.65 }} />
+                                <div className="flex gap-2">
+                                    {['#ff5f57', '#ffbd2e', '#27c93f'].map((c) => (
+                                        <div key={c} className="w-2.5 h-2.5 rounded-full" style={{ background: c, boxShadow: `0 0 8px ${c}66` }} />
                                     ))}
                                 </div>
                             </div>
 
-                            {/* Growth badge */}
-                            <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/15 border border-primary/25">
-                                <TrendingUp className="w-3.5 h-3.5 text-primary-light" />
-                                <span className="font-body font-[800] text-sm text-primary-light">+240% Growth</span>
+                            <div className="mb-6 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-primary/20 border border-primary/30">
+                                <TrendingUp className="w-4 h-4 text-primary-accent" />
+                                <span className="font-body font-black text-sm text-primary-accent">+328% Impact</span>
                             </div>
 
-                            {/* Mini stats */}
-                            <div className="grid grid-cols-3 gap-2 mb-4">
-                                {[['Revenue', '+£2.3k'], ['AOV', '£0.89'], ['Conv.', '3.5%']].map(([l, v]) => (
-                                    <div key={l} className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5">
-                                        <p className="font-body text-[9px] font-bold uppercase tracking-wider text-white/25 mb-1">{l}</p>
-                                        <p className="font-body text-sm font-[800] text-white">{v}</p>
+                            <div className="grid grid-cols-3 gap-3 mb-6">
+                                {[['Growth', '+£12.4k'], ['AOV', '£1.42'], ['Conv.', '5.2%']].map(([l, v]) => (
+                                    <div key={l} className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10">
+                                        <p className="font-body text-[9px] font-bold uppercase tracking-widest text-white/30 mb-1.5">{l}</p>
+                                        <p className="font-body text-sm font-black text-white">{v}</p>
                                     </div>
                                 ))}
                             </div>
 
-                            {/* Bar chart */}
-                            <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 mb-3">
-                                <p className="font-body text-[9px] font-bold uppercase tracking-wider text-white/25 mb-3">Monthly Revenue</p>
-                                <div className="flex items-end gap-1 h-12">
-                                    {[30, 50, 38, 65, 45, 75, 55, 70, 48, 85, 68, 100].map((h, i) => (
+                            <div className="p-4 rounded-2xl bg-white/[0.03] border border-white/10 mb-4">
+                                <p className="font-body text-[9px] font-bold uppercase tracking-widest text-white/30 mb-4">Conversion Efficiency</p>
+                                <div className="flex items-end gap-1.5 h-16">
+                                    {[35, 60, 45, 80, 55, 95, 65, 85, 50, 100, 75, 90].map((h, i) => (
                                         <motion.div key={i}
                                             className="flex-1 rounded-sm"
-                                            style={{ height: `${h}%`, originY: 1, background: i >= 9 ? 'linear-gradient(to top,#1C4D8D,#4988C4)' : 'rgba(73,136,196,0.2)' }}
+                                            style={{
+                                                height: `${h}%`,
+                                                originY: 1,
+                                                background: i >= 9 ? 'linear-gradient(to top, #1e5bb0, #4988C4)' : 'rgba(73,136,196,0.3)',
+                                                boxShadow: i >= 9 ? '0 0 15px rgba(30,91,176,0.5)' : 'none'
+                                            }}
                                             initial={{ scaleY: 0 }}
                                             animate={{ scaleY: 1 }}
-                                            transition={{ delay: 1.6 + i * 0.04, duration: 0.45 }}
+                                            transition={{ delay: 2 + i * 0.05, duration: 0.5 }}
                                         />
                                     ))}
                                 </div>
-                            </div>
-
-                            {/* Table rows */}
-                            <div className="space-y-1.5">
-                                {[['NRL analytics suite', '£4.34', '+12.3%'], ['Platform efficiency', '98.2%', '+2.1%']].map(([l, v, c]) => (
-                                    <div key={l} className="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-white/[0.02]">
-                                        <span className="font-body text-[10px] text-white/35">{l}</span>
-                                        <div className="flex items-center gap-2">
-                                            <span className="font-body text-[10px] font-semibold text-white/55">{v}</span>
-                                            <span className="font-body text-[10px] font-[800] text-emerald-400">{c}</span>
-                                        </div>
-                                    </div>
-                                ))}
                             </div>
                         </div>
                     </motion.div>
                 </div>
             </div>
 
-            {/* Bottom fade */}
-            <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
+            {/* Bottom Glow Fade */}
+            <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-20" />
         </section>
     );
 }

@@ -1,19 +1,25 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   DESIGN TOKENS - NEW BLUE PALETTE
+   DESIGN TOKENS - BRIGHTER BLUE PALETTE
 ═══════════════════════════════════════════ */
 :root {
   --background: #000000;
   --foreground: #ffffff;
   --primary-deep: #0F2854;
-  --primary: #1C4D8D;
+  --primary: #1e5bb0;
+  /* Slightly brighter than #1C4D8D */
   --primary-light: #4988C4;
   --primary-accent: #BDE8F5;
   --primary-foreground: #ffffff;
   --muted: rgba(255, 255, 255, 0.45);
-  --border: rgba(255, 255, 255, 0.07);
-  --card: rgba(255, 255, 255, 0.025);
+  --border: rgba(255, 255, 255, 0.1);
+  --card: rgba(255, 255, 255, 0.03);
+
+  /* Animated Glow Colors */
+  --glow-1: rgba(28, 77, 141, 0.4);
+  --glow-2: rgba(73, 136, 196, 0.3);
+  --glow-3: rgba(189, 232, 245, 0.15);
 }
 
 /* ═══════════════════════════════════════════
@@ -38,12 +44,6 @@
 /* ═══════════════════════════════════════════
    BASE
 ═══════════════════════════════════════════ */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
   font-size: 15px;
@@ -53,207 +53,81 @@ body {
   background: #000;
   color: #fff;
   font-family: var(--font-poppins), sans-serif;
-  font-weight: 400;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-h1,
-h2,
-h3 {
-  font-family: var(--font-poppins), sans-serif;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-}
-
-h4,
-h5,
-h6 {
-  font-family: var(--font-poppins), sans-serif;
-  font-weight: 600;
 }
 
 /* ═══════════════════════════════════════════
-   UTILITY CLASSES
+   ENHANCED GLOW UTILITIES
 ═══════════════════════════════════════════ */
 
-.font-display {
-  font-family: var(--font-poppins), sans-serif;
-}
-
-.font-body {
-  font-family: var(--font-poppins), sans-serif;
+.glow-heavy {
+  filter: blur(100px);
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0.6;
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, var(--primary-light), var(--primary-accent));
+  background: linear-gradient(90deg, #4988C4, #BDE8F5, #ffffff);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  animation: shine 5s linear infinite;
 }
 
-.glass-card {
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  transition: all 0.35s ease;
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .premium-card {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .premium-card:hover {
-  border-color: var(--primary-light);
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 10px 40px rgba(28, 77, 141, 0.1);
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(73, 136, 196, 0.25);
-  background: rgba(28, 77, 141, 0.15);
-  font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary-accent);
-}
-
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 16px;
-  border-radius: 999px;
-  background: rgba(15, 15, 20, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  font-weight: 500;
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.section-label .dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--primary-light);
-}
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 12px 28px;
-  border-radius: 999px;
-  background: #fff;
-  color: #000;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-decoration: none;
-}
-
-.btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 12px 28px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  background: transparent;
-  color: #fff;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
+  border-color: rgba(73, 136, 196, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px -10px rgba(28, 77, 141, 0.4);
 }
 
 .btn-indigo {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 12px 32px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
-  color: #fff;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.03em;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  text-decoration: none;
-  box-shadow: 0 0 25px rgba(28, 77, 141, 0.3);
+  background: linear-gradient(135deg, var(--primary), #4988C4);
+  box-shadow: 0 0 30px rgba(28, 77, 141, 0.4);
+  transition: all 0.3s ease;
 }
 
-.hero-glow-main {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at center, rgba(28, 77, 141, 0.15) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: -1;
+.btn-indigo:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 45px rgba(28, 77, 141, 0.6);
+}
+
+.section-label {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
 }
 
 /* ═══════════════════════════════════════════
-   SPOTLIGHT NAVBAR
+   PLATFORMS BAR REFINEMENT
 ═══════════════════════════════════════════ */
-.glass-border {
-  border: 1px solid rgba(255, 255, 255, 0.12);
+.tech-logo-container {
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
 }
 
-.spotlight-nav-bg {
-  background-color: rgba(8, 8, 16, 0.95);
-}
-
-.spotlight-nav-shadow {
-  box-shadow:
-    0 10px 40px -6px rgba(0, 0, 0, 0.7),
-    0 4px 6px -4px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-/* ═══════════════════════════════════════════
-   SCROLLBAR
-═══════════════════════════════════════════ */
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-track {
-  background: #000;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #1a1a2e;
-  border-radius: 10px;
-}
-
-/* ═══════════════════════════════════════════
-   LENIS SMOOTH SCROLL
-═══════════════════════════════════════════ */
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+.tech-logo-container:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(73, 136, 196, 0.3);
+  transform: translateY(-2px);
 }
