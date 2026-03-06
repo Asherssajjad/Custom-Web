@@ -29,47 +29,54 @@ export default function Hero() {
             ref={container}
             className="relative min-h-screen flex items-center overflow-hidden bg-black"
         >
+            {/* Background Glow Elements */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#0F2854]/30 rounded-full blur-[120px] pointer-events-none" />
+                <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#1C4D8D]/20 rounded-full blur-[150px] pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-radial-gradient from-[#4988C4]/5 to-transparent blur-[100px] pointer-events-none" />
+            </div>
+
             {/* Grid */}
-            <div className="absolute inset-0 pointer-events-none"
+            <div className="absolute inset-0 pointer-events-none z-0"
                 style={{
-                    backgroundImage: `linear-gradient(rgba(99,102,241,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,0.07) 1px,transparent 1px)`,
+                    backgroundImage: `linear-gradient(rgba(73,136,196,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(73,136,196,0.05) 1px,transparent 1px)`,
                     backgroundSize: '48px 48px',
-                    maskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, black 30%, transparent 100%)',
+                    maskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, black 40%, transparent 100%)',
+                    WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 40%, black 40%, transparent 100%)',
                 }}
             />
 
-            {/* Orbs – matching screenshot positions */}
-            <motion.div className="h-orb absolute top-16 right-16 w-14 h-14 rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, #818cf8 0%, #6366f1 60%, transparent 100%)', boxShadow: '0 0 50px 16px rgba(99,102,241,0.55)' }}
+            {/* Orbs – matching screenshot positions with new colors */}
+            <motion.div className="h-orb absolute top-16 right-16 w-14 h-14 rounded-full pointer-events-none z-5"
+                style={{ background: 'radial-gradient(circle, #BDE8F5 0%, #4988C4 60%, transparent 100%)', boxShadow: '0 0 50px 16px rgba(73,136,196,0.4)' }}
                 animate={{ y: [0, -16, 0], x: [0, 8, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             />
-            <motion.div className="h-orb absolute bottom-28 left-8 w-8 h-8 rounded-full pointer-events-none"
-                style={{ background: 'radial-gradient(circle, #818cf8, #6366f1)', boxShadow: '0 0 35px 10px rgba(99,102,241,0.45)' }}
+            <motion.div className="h-orb absolute bottom-28 left-8 w-8 h-8 rounded-full pointer-events-none z-5"
+                style={{ background: 'radial-gradient(circle, #4988C4, #1C4D8D)', boxShadow: '0 0 35px 10px rgba(28, 77, 141, 0.3)' }}
                 animate={{ y: [0, 14, 0], x: [0, -5, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
             />
-            <motion.div className="h-orb absolute top-[55%] right-6 w-5 h-5 rounded-full pointer-events-none"
-                style={{ background: '#6366f1', boxShadow: '0 0 24px 8px rgba(99,102,241,0.4)' }}
+            <motion.div className="h-orb absolute top-[55%] right-6 w-5 h-5 rounded-full pointer-events-none z-5"
+                style={{ background: '#1C4D8D', boxShadow: '0 0 24px 8px rgba(15, 40, 84, 0.4)' }}
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.7 }}
             />
 
             {/* Content */}
-            <div className="container mx-auto px-6 lg:px-12 pt-32 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="container mx-auto px-6 lg:px-12 pt-32 pb-16 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
 
                 {/* LEFT */}
-                <div className="space-y-7 z-10">
+                <div className="space-y-7">
 
-                    {/* Big headline – Barlow Condensed Black Italic */}
+                    {/* Big headline */}
                     <div className="space-y-0 leading-none">
                         {['We Build', 'High-Performance', 'Digital Brands'].map((line, i) => (
                             <div key={i} className="overflow-hidden">
                                 <h1
                                     className="h-word inline-block font-display text-5xl md:text-6xl lg:text-7xl font-bold uppercase leading-[0.95] tracking-tight"
                                     style={i === 1 ? {
-                                        background: 'linear-gradient(90deg,#818cf8,#a78bfa)',
+                                        background: 'linear-gradient(90deg,#4988C4,#BDE8F5)',
                                         WebkitBackgroundClip: 'text',
                                         WebkitTextFillColor: 'transparent',
                                         backgroundClip: 'text',
@@ -98,10 +105,10 @@ export default function Hero() {
                 </div>
 
                 {/* RIGHT — floating 3D dashboard */}
-                <div className="relative flex items-center justify-center z-10">
+                <div className="relative flex items-center justify-center">
                     {/* Big glow behind */}
-                    <div className="absolute w-80 h-80 rounded-full pointer-events-none"
-                        style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.22) 0%, transparent 70%)' }} />
+                    <div className="absolute w-[400px] h-[400px] rounded-full pointer-events-none"
+                        style={{ background: 'radial-gradient(circle, rgba(28,77,141,0.2) 0%, transparent 70%)' }} />
 
                     <motion.div
                         className="h-card w-full max-w-[420px]"
@@ -110,10 +117,10 @@ export default function Hero() {
                         style={{ filter: 'drop-shadow(0 30px 60px rgba(0,0,0,0.7))' }}
                     >
                         <div className="rounded-2xl p-5 overflow-hidden" style={{
-                            background: 'linear-gradient(145deg, rgba(25,22,55,0.97) 0%, rgba(10,8,28,0.99) 100%)',
-                            border: '1px solid rgba(99,102,241,0.2)',
+                            background: 'linear-gradient(145deg, rgba(15,40,84,0.95) 0%, rgba(5,10,30,0.98) 100%)',
+                            border: '1px solid rgba(73,136,196,0.2)',
                             transform: 'perspective(1200px) rotateY(-10deg) rotateX(5deg)',
-                            boxShadow: '0 0 0 1px rgba(99,102,241,0.1), 0 30px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)',
+                            boxShadow: '0 0 0 1px rgba(73,136,196,0.1), 0 30px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)',
                         }}>
                             {/* Header */}
                             <div className="flex justify-between items-start mb-4 pb-3 border-b border-white/5">
@@ -128,10 +135,10 @@ export default function Hero() {
                                 </div>
                             </div>
 
-                            {/* +240% Growth badge */}
+                            {/* Growth badge */}
                             <div className="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/15 border border-primary/25">
-                                <TrendingUp className="w-3.5 h-3.5 text-primary" />
-                                <span className="font-body font-[800] text-sm text-primary">+240% Growth</span>
+                                <TrendingUp className="w-3.5 h-3.5 text-primary-light" />
+                                <span className="font-body font-[800] text-sm text-primary-light">+240% Growth</span>
                             </div>
 
                             {/* Mini stats */}
@@ -151,7 +158,7 @@ export default function Hero() {
                                     {[30, 50, 38, 65, 45, 75, 55, 70, 48, 85, 68, 100].map((h, i) => (
                                         <motion.div key={i}
                                             className="flex-1 rounded-sm"
-                                            style={{ height: `${h}%`, originY: 1, background: i >= 9 ? 'linear-gradient(to top,#6366f1,#818cf8)' : 'rgba(99,102,241,0.2)' }}
+                                            style={{ height: `${h}%`, originY: 1, background: i >= 9 ? 'linear-gradient(to top,#1C4D8D,#4988C4)' : 'rgba(73,136,196,0.2)' }}
                                             initial={{ scaleY: 0 }}
                                             animate={{ scaleY: 1 }}
                                             transition={{ delay: 1.6 + i * 0.04, duration: 0.45 }}
@@ -178,7 +185,7 @@ export default function Hero() {
             </div>
 
             {/* Bottom fade */}
-            <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+            <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-black to-transparent pointer-events-none z-20" />
         </section>
     );
 }

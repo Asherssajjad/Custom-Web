@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   DESIGN TOKENS
+   DESIGN TOKENS - NEW BLUE PALETTE
 ═══════════════════════════════════════════ */
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --primary: #6366f1;
-  --primary-light: #818cf8;
+  --primary-deep: #0F2854;
+  --primary: #1C4D8D;
+  --primary-light: #4988C4;
+  --primary-accent: #BDE8F5;
   --primary-foreground: #ffffff;
   --muted: rgba(255, 255, 255, 0.45);
   --border: rgba(255, 255, 255, 0.07);
@@ -21,14 +23,15 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-primary-deep: var(--primary-deep);
+  --color-primary-light: var(--primary-light);
+  --color-primary-accent: var(--primary-accent);
   --color-primary-foreground: var(--primary-foreground);
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-card: var(--card);
 
-  /* font-display  → Poppins */
   --font-display: var(--font-poppins), system-ui, sans-serif;
-  /* font-body     → Poppins */
   --font-body: var(--font-poppins), system-ui, sans-serif;
 }
 
@@ -44,7 +47,6 @@
 html {
   scroll-behavior: smooth;
   font-size: 15px;
-  /* Slightly smaller base font size */
 }
 
 body {
@@ -85,7 +87,7 @@ h6 {
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, #818cf8, #a78bfa);
+  background: linear-gradient(90deg, var(--primary-light), var(--primary-accent));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -97,19 +99,32 @@ h6 {
   transition: all 0.35s ease;
 }
 
+.premium-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.premium-card:hover {
+  border-color: var(--primary-light);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 10px 40px rgba(28, 77, 141, 0.1);
+}
+
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 5px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(99, 102, 241, 0.25);
-  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(73, 136, 196, 0.25);
+  background: rgba(28, 77, 141, 0.15);
   font-weight: 600;
   font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--primary-light);
+  color: var(--primary-accent);
 }
 
 .section-label {
@@ -118,18 +133,19 @@ h6 {
   gap: 7px;
   padding: 5px 16px;
   border-radius: 999px;
-  background: rgba(15, 15, 20, 0.9);
+  background: rgba(15, 15, 20, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.08);
   font-weight: 500;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .section-label .dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--primary-light);
 }
 
 .btn-primary {
@@ -173,7 +189,7 @@ h6 {
   gap: 7px;
   padding: 12px 32px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #6366f1, #7c3aed);
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
   color: #fff;
   font-weight: 600;
   font-size: 13px;
@@ -181,7 +197,19 @@ h6 {
   cursor: pointer;
   transition: all 0.25s ease;
   text-decoration: none;
-  box-shadow: 0 0 25px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 25px rgba(28, 77, 141, 0.3);
+}
+
+.hero-glow-main {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(28, 77, 141, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* ═══════════════════════════════════════════
